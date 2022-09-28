@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_workorder_inherit_custom_tree" model="ir.ui.view">
+        <field name="name">model.name.view.form.inherit</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
+        <field name="arch" type="xml">
+            <field name="workcenter_id" position="after">
+                <field name="order_id" />
+                <field name="supplier" />
+                <field name="fabric_id" />
+                <field name="color_id" />
+                <field name="hk" />
+                <field name="shrinkage" />
+            </field>
+
+            <xpath expr="//field[@name='duration']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='duration_expected']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='date_planned_start']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='button_start']" position="attributes">
+                <attribute name="string">Create PO</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='button_start']" position="attributes">
+                <attribute name="name">create_po_action</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='button_pending']" position="attributes">
+                <attribute name="attrs">{'invisible':True}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

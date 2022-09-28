@@ -1,0 +1,205 @@
+<odoo>
+  <data>
+   
+    <record id="inherit_purchase_request" model="ir.ui.view">
+      <field name="name">purchase.request.view.form.inherit</field>
+      <field name="model">purchase.request</field>
+      <field name="inherit_id" ref="purchase_request.view_purchase_request_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']" position="attributes">
+          <attribute name="readonly">1</attribute>
+        </xpath>
+        <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='product_id']" position="after">
+          <field name="image" widget="image" class="oe_avatar"/>
+        </xpath>
+        <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='date_required']" position="after">
+          <field name="fabric" />
+          <field name="lining" />
+          <field name="department"/>
+          <field name="sub_department" />
+        </xpath>
+        <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='estimated_cost']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='company_id']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='purchased_qty']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='purchase_state']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//group/field[@name='origin']" position="before">
+          <field name="test" invisible="1"/>
+          <field name="request_detail_id" attrs="{'readonly': [('state', 'not in', ('draft'))]}"/>
+          <field name="ordering_date" attrs="{'invisible': [('state', 'not in', ('done'))]}"/>
+          <field name="delivery_date" attrs="{'invisible': [('state', 'not in', ('done'))]}"/>
+        </xpath>
+        <xpath expr="//field[@name='origin']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='description']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='group_id']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//notebook/page/group" position="after">
+          <group string="Fit Notes" attrs="{'invisible': [('state', 'in', ('done'))]}">
+            <field name="notes" nolabel="1" placeholder="Comments ....." />
+          </group>
+        </xpath>
+        <xpath expr="//button[@name='button_rejected']" position="attributes">
+          <attribute name="invisible">1</attribute> 
+        </xpath>
+        <xpath expr="//group/group[3]" position="after">
+          <group attrs="{'invisible': [('state', 'not in', ('done'))]}">
+            <field name="status_of_sample" />
+            <field name="thread_type" />
+            <field name="thread_color" />
+            <field name="hanging_tape" />
+          </group>
+        </xpath>
+
+        <xpath expr="//header" position="inside">
+          <button 
+            name="button_to_pattern" 
+            states="approved"
+            type="object" 
+            string="Pattern Alteration"
+            class="oe_highlight"
+            attrs="{'invisible': [('state', 'not in', ('approved'))]}"
+          />
+        </xpath>
+        <xpath expr="//button[@name='button_approved']" position="after">
+          <button name="create_pattern_alteration" type="object" string="Create Pattern Alteration" class="oe_highlight" attrs="{'invisible': [('state', 'not in', ('rejected'))]}"/>
+        </xpath>
+        <xpath expr="//div[@class='oe_button_box']" position="inside">
+          <button type="object" name="view_pattern_alteration" class="oe_stat_button" icon="fa-align-justify" attrs="{'invisible': [('pattern_count', '=', 0)]}">
+            <field name='pattern_count' widget="statinfo" string='Pattern Alteration'/>
+          </button>
+        </xpath>
+        <xpath expr="//notebook//page[1]" position="after">
+          <page string="Custom Pattern" attrs="{'invisible': [('test', '=', False)]}">
+            <field name="purchase_custom_ids">
+              <tree editable="bottom">
+                <field name="print_color_id" />
+                <field name="pattern_marker" />
+                <field name="model_ptr"/>
+                <field name="alt_cmnt" />
+              </tree>
+              <form>
+                <group>
+                  <field name="print_color_id" />
+                  <field name="pattern_marker" />
+                  <field name="alt_cmnt" />
+                  <field name="model_ptr"/>
+                  <field name="alt_cmnt" />
+                </group>
+              </form>
+            </field>
+          </page>
+        </xpath>
+
+        <xpath expr="//notebook//page[2]" position="after">
+          <page string="Fabric and Lining" attrs="{'invisible': [('state', 'not in', ('done'))]}">
+            <field name="fabric_lining_ids">
+              <tree editable="bottom">
+                <field name="fabric" />
+                <field name="lining" />
+                <field name="color" />
+              </tree>
+              <form>
+                <group>
+                  <field name="fabric" />
+                  <field name="lining" />
+                  <field name="color" />
+                </group>
+              </form>
+            </field>
+          </page>
+        </xpath>
+
+        <xpath expr="//notebook//page[3]" position="after">
+          <page string="Seams and Grading" attrs="{'invisible': [('state', 'not in', ('done'))]}">
+            <group>
+              <field name="seams" placeholder="Comment ..."/>
+            </group>
+            <group>
+              <field name="grading_intructions" placeholder="Comment ..." />
+            </group>
+            <group>
+              <field name="fit_changes" placeholder="Comment ..."/>
+            </group>
+          </page>
+        </xpath>
+
+        <xpath expr="//notebook//page[4]" position="after">
+          <page string="Label Hardware" attrs="{'invisible': [('state', 'not in', ('done'))]}">
+            <field name="label_hardware_ids">
+              <tree editable="bottom">
+                <field name="description" />
+                <field name="color" />
+                <field name="qty_label" />
+              </tree>
+              <form>
+                <group>
+                  <field name="description" />
+                  <field name="color" />
+                  <field name="qty_label" />
+                </group>
+              </form>
+            </field>
+          </page>
+        </xpath>
+
+        <xpath expr="//notebook//page[5]" position="after">
+          <page string="Label Dress" attrs="{'invisible': [('state', 'not in', ('done'))]}">
+            <field name="label_dress_ids">
+              <tree editable="bottom">
+                <field name="brand" />
+                <field name="image" widget="image" class="oe_avatar"/>
+                <field name="comment" />
+              </tree>
+              <form>
+                <group>
+                  <field name="brand" />
+                  <field name="image" widget="image" class="oe_avatar" />
+                  <field name="comment" />
+                </group>
+              </form>
+            </field>
+          </page>
+        </xpath>
+
+        <xpath expr="//notebook//page[6]" position="after">
+          <page string="Production Summary" attrs="{'invisible': [('state', 'not in', ('done'))]}">
+            <field name="prod_summ_ids">
+              <tree editable="bottom">
+                <field name="summary" />
+                <field name="description" />
+              </tree>
+              <form>
+                <group>
+                  <field name="summary" />
+                  <field name="description" />
+                </group>
+              </form>
+            </field>
+          </page>
+        </xpath>
+
+        <xpath expr="//button[@name='button_draft']" position="attributes">
+          <attribute name="groups">sol_purchase.group_cancel_set_draft</attribute>
+        </xpath>
+
+      </field>
+    </record>
+
+
+  
+
+
+  </data>
+</odoo>

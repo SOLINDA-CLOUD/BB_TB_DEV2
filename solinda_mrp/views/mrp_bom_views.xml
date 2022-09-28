@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_bom_inherit_costing_product" model="ir.ui.view">
+        <field name="name">mrp.bom.inherit.costing.product</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <field name="product_tmpl_id" position="before">
+                <field name="name" />
+                <field name="trans_date" />
+                <field name="customer" />
+            </field>
+            <xpath expr="//group/group/div[@class='o_row']" position="after">
+                <field name="color" />
+                <field name="categ_id" />
+                <field name="retail_price" />
+            </xpath>
+            <field name="company_id" position="after">
+                <field name="over_packaging" />
+                <field name="landed_cost" />
+                <field name="landed_quoted" />
+            </field>
+            <xpath expr="//notebook/page/field/tree/field[@name='product_id']" position="after">
+                <field name="color" />
+                <field name="sizes" />
+                <field name="ratio" />
+            </xpath>
+            <xpath expr="//notebook/page/field/tree/button[@name='action_see_attachments']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//notebook/page/field/tree/field[@name='attachments_count']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_bom_tree_inherit_costing" model="ir.ui.view">
+        <field name="name">mrp.bom.tree.inherit.costing</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="sequence" position="after">
+                <field name="name" />
+                <field name="customer" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

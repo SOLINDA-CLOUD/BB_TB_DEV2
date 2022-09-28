@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_request_detail,sol_purchase.request_detail,model_request_detail,base.group_user,1,1,1,1
+access_pattern_alteration,sol_purchase.pattern_alteration,model_pattern_alteration,base.group_user,1,1,1,1
+access_pattern_alteration_manager,sol_purchase.pattern_alteration,model_pattern_alteration,purchase_request.group_purchase_request_manager,1,1,1,1
+access_custom_pattern,sol_purchase.custom_pattern,model_custom_pattern,base.group_user,1,1,1,1
+access_fabric_lining,sol_purchase.fabric_lining,model_fabric_lining,base.group_user,1,1,1,1
+access_label_hardware,sol_purchase.label_hardware,model_label_hardware,base.group_user,1,1,1,1
+access_label_dress,sol_purchase.label_dress,model_label_dress,base.group_user,1,1,1,1
+access_production_summary,sol_purchase.production_summary,model_production_summary,base.group_user,1,1,1,1
