@@ -101,6 +101,7 @@ class PurchaseRequest(models.Model):
     request_detail_id = fields.Many2one(string='Original Sample', comodel_name='request.detail', ondelete='cascade')
     notes = fields.Html(string='Fit Notes')
     date_start = fields.Date(string='Transaction Date')
+    story_id = fields.Char(string='Story')
 
     ### PATTERN ALTERATION ###
     purchase_custom_ids = fields.One2many('custom.pattern', 'parent_custom_id', string='Custom', copy=True)
