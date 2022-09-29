@@ -7,7 +7,7 @@
         <field name="model">purchase.request.line.make.purchase.order</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <form string="Create RFQ">
+            <form string="Create PO">
                 <separator string="Existing RFQ to update:" />
                 <newline />
                 <group>
@@ -45,7 +45,7 @@
                 <footer>
                     <button
                         name="make_purchase_order"
-                        string="Create RFQ"
+                        string="Create PO"
                         type="object"
                         class="oe_highlight"
                     />
@@ -58,7 +58,7 @@
         id="action_purchase_request_line_make_purchase_order"
         model="ir.actions.act_window"
     >
-        <field name="name">Create RFQ</field>
+        <field name="name">Create PO</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.request.line.make.purchase.order</field>
         <field name="view_mode">form</field>

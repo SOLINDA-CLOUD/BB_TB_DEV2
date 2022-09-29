@@ -7,3 +7,5 @@ access_fabric_lining,sol_purchase.fabric_lining,model_fabric_lining,base.group_u
 access_label_hardware,sol_purchase.label_hardware,model_label_hardware,base.group_user,1,1,1,1
 access_label_dress,sol_purchase.label_dress,model_label_dress,base.group_user,1,1,1,1
 access_production_summary,sol_purchase.production_summary,model_production_summary,base.group_user,1,1,1,1
+access_data_fabric_lining,sol_purchase.data_fabric_lining,model_data_fabric_lining,base.group_user,1,1,1,1
+access_print_color,sol_purchase.print_color,model_print_color,base.group_user,1,1,1,1

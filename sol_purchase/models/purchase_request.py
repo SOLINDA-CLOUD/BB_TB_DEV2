@@ -16,7 +16,7 @@ class CustomPattern(models.Model):
 
     # name = fields.Char('Print/Color')
     parent_custom_id = fields.Many2one('purchase.request', string='custom')
-    print_color_id = fields.Char(string='Print/Color')
+    print_color_id = fields.Many2one(comodel_name='print.color', string='Print/Color', ondelete='cascade')
     pattern_marker = fields.Char('Pattern Marker')
     alt_cmnt = fields.Html('Alteration Comment')
     model_ptr = fields.Char('Model')
@@ -26,9 +26,9 @@ class FabricLining(models.Model):
     _description = 'Fabric Lining'
 
     fabric_lining_id = fields.Many2one('purchase.request', string='fabric lining ids')
-    fabric = fields.Char('Fabric')
-    lining = fields.Char('Lining')
-    color = fields.Char('Color')
+    fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric')
+    lining = fields.Many2one(comodel_name='data.fabric.lining', string='Lining')
+    color = fields.Many2one(comodel_name='print.color', string='Color')
 
 class LabelHardware(models.Model):
     _name = 'label.hardware'
@@ -65,14 +65,26 @@ class RequestDetail(models.Model):
     approved_size = fields.Char(string='Sample In Approved Size')
     sample_in_size = fields.Char(string='Please Make Sample In Size')
 
+class DataFabricLining(models.Model):
+    _name = 'data.fabric.lining'
+    _description = 'Database Fabric and Lining'
+
+    name = fields.Char(string='fabric and lining')
+
+class PrintColor(models.Model):
+    _name = 'print.color'
+    _description = 'Print Color'
+
+    name = fields.Char(string='color')
+
 class PurchaseRequestLine(models.Model):
     _inherit = 'purchase.request.line'
 
     image = fields.Image(string='Fabric Swatch')
     department = fields.Char(string='Department')
     sub_department = fields.Char(string='Sub Department')
-    fabric = fields.Char(string='Fabric')
-    lining = fields.Char(string='Lining')
+    fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric', ondelete='cascade')
+    lining= fields.Many2one(comodel_name='data.fabric.lining', string='Lining', ondelete='cascade')
 
     @api.onchange('product_id')
     def _onchange_image(self):

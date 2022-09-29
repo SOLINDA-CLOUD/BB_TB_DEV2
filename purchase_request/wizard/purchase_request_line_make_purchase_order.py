@@ -307,7 +307,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
         return {
             "domain": [("id", "in", res)],
-            "name": _("RFQ"),
+            "name": _("PO"),
             "view_mode": "tree,form",
             "res_model": "purchase.order",
             "view_id": False,

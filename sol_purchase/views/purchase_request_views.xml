@@ -33,6 +33,7 @@
         <xpath expr="//group/field[@name='origin']" position="before">
           <field name="test" invisible="1"/>
           <field name="request_detail_id" attrs="{'readonly': [('state', 'not in', ('draft'))]}"/>
+          <field name="story_id" attrs="{'readonly': [('state', 'not in', ('draft'))]}"/>
           <field name="ordering_date" attrs="{'invisible': [('state', 'not in', ('done'))]}"/>
           <field name="delivery_date" attrs="{'invisible': [('state', 'not in', ('done'))]}"/>
         </xpath>
