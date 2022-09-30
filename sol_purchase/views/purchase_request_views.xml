@@ -215,6 +215,17 @@
       </field>
     </record>
 
+    <record id="purchase_request_line_search_inherit" model="ir.ui.view">
+      <field name="name">purchase.request.line.search.view.form.inherit</field>
+      <field name="model">purchase.request.line</field>
+      <field name="inherit_id" ref="purchase_request.purchase_request_line_search"/>
+      <field name="arch" type="xml">
+        <xpath expr="//search" position="inside">
+          <field name="view_story"  string="Story"/>
+        </xpath>
+      </field>
+    </record>
+
   
 
 
