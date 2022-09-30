@@ -94,6 +94,7 @@ class PurchaseRequestLine(models.Model):
     sub_department = fields.Char(string='Sub Department')
     fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric', ondelete='cascade')
     lining= fields.Many2one(comodel_name='data.fabric.lining', string='Lining', ondelete='cascade')
+    view_story = fields.Char(string='Story', store=True, related='request_id.story_id')
 
     @api.onchange('product_id')
     def _onchange_image(self):
