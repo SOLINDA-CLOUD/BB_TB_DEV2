@@ -29,6 +29,18 @@
       <field name="binding_model_id" ref="purchase_request.model_purchase_request"/>
       <field name="binding_type">report</field>
     </record>
+
+    <record id="report_pattern_alteration" model="ir.actions.report">
+      <field name="name">Report - Pattern Alteration</field>
+      <field name="model">purchase.request</field>
+      <field name="report_type">qweb-pdf</field>
+      <field name="report_name">sol_purchase.report_ptr</field>
+      <field name="report_file">sol_purchase.report_ptr</field>
+      <field name="paperformat_id" ref="sol_purchase.report_paperformat_a4_portrait" />
+      <field name="print_report_name">'PTR - %s' % object.name</field>
+      <field name="binding_model_id" ref="purchase_request.model_purchase_request"/>
+      <field name="binding_type">report</field>
+    </record>
     
   
   </data>

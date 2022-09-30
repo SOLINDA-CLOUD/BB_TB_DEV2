@@ -30,6 +30,7 @@
         'views/purchase_order_views.xml',
         'report/report_action.xml',
         'report/report_sample_development.xml',
+        'report/report_pattern.xml',
         # 'views/templates.xml',
         'views/sequence_data.xml',
     ],

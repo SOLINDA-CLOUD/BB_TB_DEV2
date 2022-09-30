@@ -20,6 +20,9 @@ class CustomPattern(models.Model):
     pattern_marker = fields.Char('Pattern Marker')
     alt_cmnt = fields.Html('Alteration Comment')
     model_ptr = fields.Char('Model')
+    size = fields.Char('Size')
+    size_approve = fields.Char('Size Approve')
+    fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric')
 
 class FabricLining(models.Model):
     _name = 'fabric.lining'
@@ -105,7 +108,7 @@ class PurchaseRequest(models.Model):
 
     ### SAMPLE DEVELOPMENT ###
     request_detail_id = fields.Many2one(string='Original Sample', comodel_name='request.detail', ondelete='cascade')
-    notes = fields.Html(string='Fit Notes')
+    notes = fields.Html(string='Notes')
     date_start = fields.Date(string='Transaction Date')
     story_id = fields.Char(string='Story')
 
