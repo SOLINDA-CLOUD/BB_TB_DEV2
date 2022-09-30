@@ -36,7 +36,7 @@ class LabelHardware(models.Model):
 
     label_hardware_id = fields.Many2one('purchase.request', string='label hardware ids')
     description = fields.Char('Description')
-    color = fields.Char('Color')
+    color = fields.Many2one(comodel_name='print.color', string='Color')
     qty_label = fields.Float('Qty')
 
 class LabelDress(models.Model):
@@ -44,9 +44,9 @@ class LabelDress(models.Model):
     _description = 'Label Dress'
 
     label_dress_id = fields.Many2one('purchase.request', string='label dress ids')
-    brand = fields.Char('Brand')
+    brand = fields.Many2one(comodel_name='brand', string='Brand', ondelete='cascade')
     image = fields.Image('Label Pict')
-    comment = fields.Char('Comment')
+    comment = fields.Html('Comment')
 
 class ProductionSummary(models.Model):
     _name = 'production.summary'
@@ -76,6 +76,12 @@ class PrintColor(models.Model):
     _description = 'Print Color'
 
     name = fields.Char(string='color')
+
+class Brand(models.Model):
+    _name = 'brand'
+    _description = 'Brand'
+
+    name = fields.Char('Brand')
 
 class PurchaseRequestLine(models.Model):
     _inherit = 'purchase.request.line'
