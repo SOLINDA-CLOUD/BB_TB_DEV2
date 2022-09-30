@@ -26,7 +26,7 @@
             </div>
           </header>
 
-          <h2 style="text-align: center;">SAMPLE DEVELOPMENT</h2>
+          <h2 style="text-align: left; text-decoration: underline;">SAMPLE DEVELOPMENT</h2>
           <br/>
           <br/>
           <table style="table-layout: fixed; border-collapse: collapse; width: 100%; height: 183px;">
@@ -105,7 +105,7 @@
                   <td style="width: 20.4689%; height: 18px;">Fabric</td>
                   <td style="width: 1.36426%; height: 18px;">:</td>
                   <td style="width: 32.0241%; height: 18px;">
-                    <t t-esc="order.fabric"/>
+                    <span t-field="order.fabric"/>
                   </td>
                 </tr>
                 <tr style="height: 18px;">
@@ -116,7 +116,7 @@
                   <td style="width: 20.4689%; height: 18px;">Lining</td>
                   <td style="width: 1.36426%; height: 18px;">:</td>
                   <td style="width: 32.0241%; height: 18px;">
-                    <t t-esc="order.lining"/>
+                    <span t-field="order.lining"/>
                   </td>
                 </tr>
                 <tr style="height: 18px;">
