@@ -49,7 +49,7 @@ class MrpWorkorder(models.Model):
                 'product_id': i.workcenter_id.product_service_id.id,
                 'fabric': i.fabric_id.name,
                 'lining':'',
-                'color':i.color_id.name
+                'color':i.color_id.name,
                 'product_qty': i.qty_producing,
             }))           
             i.show_po()
