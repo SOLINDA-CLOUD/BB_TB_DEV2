@@ -21,3 +21,4 @@ class MrpProduction(models.Model):
     sales_order_id = fields.Many2one(comodel_name='sale.order', string='SO No.')
     po_no = fields.Char(string='PO No.')
     purchase_id = fields.Many2one('purchase.order', string='Purchase')
+    product_templ_id = fields.Many2one('product.template', string='Parent Product',related="product_id.product_templ_id")
