@@ -53,7 +53,7 @@ class MrpWorkorder(models.Model):
                 'product_qty': i.qty_producing,
             }))           
             i.show_po()
-            po.update({"order_line": val})
+            po.update({"order_line": raw_po_line})
             
 
     def create_po_action(self):
