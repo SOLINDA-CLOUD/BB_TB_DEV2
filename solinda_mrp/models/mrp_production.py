@@ -20,3 +20,4 @@ class MrpProduction(models.Model):
     retail_price = fields.Float(related='bom_id.retail_price', string='Retail Price', store=True)
     sales_order_id = fields.Many2one(comodel_name='sale.order', string='SO No.')
     po_no = fields.Char(string='PO No.')
+    purchase_id = fields.Many2one('purchase.order', string='Purchase')

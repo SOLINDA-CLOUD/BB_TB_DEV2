@@ -13,26 +13,25 @@
                 <field name="color_id" />
                 <field name="hk" />
                 <field name="shrinkage" />
+                <field name="picking_ids" widget="many2many_tags" optional="hide"/>
             </field>
 
             <xpath expr="//field[@name='duration']" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="optional">hide</attribute>
             </xpath>
 
             <xpath expr="//field[@name='duration_expected']" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="optional">hide</attribute>
             </xpath>
 
             <xpath expr="//field[@name='date_planned_start']" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="optional">hide</attribute>
             </xpath>
 
-            <xpath expr="//button[@name='button_start']" position="attributes">
-                <attribute name="string">Create PO</attribute>
-            </xpath>
-
-            <xpath expr="//button[@name='button_start']" position="attributes">
-                <attribute name="name">create_po_action</attribute>
+            <xpath expr="//button[@name='button_start']" position="replace">
+                <button name="create_po" type="object" icon="fa-pencil-square-o" string="Create PO" class="oe_highlight" attrs="{'invisible': ['|', '|', '|', ('production_state','in', ('draft', 'done', 'cancel')), ('working_state', '=', 'blocked'), ('state', '=', 'done'), ('is_user_working', '!=', False)]}"/>
+                <button name="show_po" type="object" icon="fa-eye" string="Show PO" class="oe_highlight" attrs="{'invisible': [('order_id','=',False)]}"/>
+                <button name="show_receive_po" type="object" icon="fa-truck" string="Receive" class="oe_highlight" attrs="{'invisible': [('order_id','=',False)]}"/>
             </xpath>
 
             <xpath expr="//button[@name='button_pending']" position="attributes">
