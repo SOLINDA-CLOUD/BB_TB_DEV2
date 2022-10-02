@@ -131,6 +131,8 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <t t-set="total_material" t-value="0"/>
+                                <t t-set="subtotal" t-value="0"/>
                                 <t t-foreach="doc.bom_line_ids" t-as="bom">
                                     <tr>
                                         <td style="width: 20%; border: 1px solid black;">
@@ -155,12 +157,25 @@
                                             <t t-esc="bom.product_id.standard_price"/>
                                         </td>
                                         <td style="width: 15%; text-align: right; border: 1px solid black;">
-                                            <t t-set="total" t-value="bom.product_qty * bom.product_id.standard_price"/>
-                                            <t t-esc="total"/>
+                                            <t t-set="subtotal" t-value="bom.product_qty * bom.product_id.standard_price"/>
+                                            <t t-set="total_material" t-value="total_material + subtotal"/>
+                                            <t t-esc="subtotal"/>
                                         </td>
                                     </tr>
                                 </t>
                             </tbody>
+                            <tfoot>
+                                <td style="width: 20%;"></td>
+                                <td style="width: 10%; text-align: center;"></td>
+                                <td style="width: 10%; text-align: center;"></td>
+                                <td style="width: 10%; text-align: center;"></td>
+                                <td style="width: 10%; text-align: center;"></td>
+                                <td style="width: 10%; text-align: center;"></td>
+                                <td style="width: 15%; text-align: center; border: 1px solid black;">Total Material</td>
+                                <td style="width: 15%; text-align: right; border: 1px solid black;">
+                                    <t t-esc="total_material"/>
+                                </td>
+                            </tfoot>
                         </table>
                         <br/>
                         <p>
@@ -178,6 +193,8 @@
                                     <td style="width: 10%; text-align: center; border: 1px solid black;">Shkg</td>
                                     <td style="width: 15%; text-align: center; border: 1px solid black;">Sub Total</td>
                                 </tr>
+                                <t t-set="total_services" t-value="0"/>
+                                <t t-set="subtotal" t-value="0"/>
                                 <t t-foreach="doc.operation_ids" t-as="op">
                                     <tr>
                                         <td style="width: 10%; border: 1px solid black;">
@@ -201,7 +218,23 @@
                                         <td style="width: 10%; text-align: center; border: 1px solid black;">
                                             <t t-esc="op.shkg"/>
                                         </td>
-                                        <td style="width: 15%; text-align: right; border: 1px solid black;">18,36.50.00</td>
+                                        <td style="width: 15%; text-align: right; border: 1px solid black;">
+                                            <t t-set="subtotal" t-value="op.workcenter_id.costs_hour * op.shkg"/>
+                                            <t t-set="total_services" t-value="total_services + subtotal"/>
+                                            <t t-esc="subtotal"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 10%;"></td>
+                                        <td style="width: 18%; text-align: center;"></td>
+                                        <td style="width: 18%; text-align: center;"></td>
+                                        <td style="width: 10%; text-align: center;"></td>
+                                        <td style="width: 12.5%; text-align: center;"></td>
+                                        <td style="width: 16.5%; text-align: center; border: 1px solid black;" colspan="2">Total Services</td>
+                                        <!-- <td style="width: 10%; text-align: center;"></td> -->
+                                        <td style="width: 15%; text-align: right; border: 1px solid black;">
+                                            <t t-esc="total_services"/>
+                                        </td>
                                     </tr>
                                 </t>
                             </tbody>
@@ -250,24 +283,32 @@
                                                 <tr style="height: 18px;">
                                                     <td style="width: 53.6458%; text-align: right; height: 18px;">Cost Before Over</td>
                                                     <td style="width: 5.98955%; text-align: center; height: 18px;">:</td>
-                                                    <td style="width: 40.3645%; text-align: right; height: 18px;">89,770.00</td>
+                                                    <td style="width: 40.3645%; text-align: right; height: 18px;">
+                                                        <t t-set="cost_before_over" t-value="total_services + total_material"/>
+                                                        <t t-esc="cost_before_over"/>
+                                                    </td>
                                                 </tr>
                                                 <tr style="height: 18px;">
                                                     <td style="width: 53.6458%; text-align: right; height: 18px;">Over &amp; Packaging</td>
                                                     <td style="width: 5.98955%; text-align: center; height: 18px;">:</td>
-                                                    <td style="width: 40.3645%; text-align: right; height: 18px;">2,000.00</td>
+                                                    <td style="width: 40.3645%; text-align: right; height: 18px;">
+                                                        <t t-esc="doc.over_packaging"/>
+                                                    </td>
                                                 </tr>
                                                 <tr style="height: 18px;">
                                                     <td style="width: 53.6458%; text-align: right; height: 18px;">Total</td>
                                                     <td style="width: 5.98955%; text-align: center; height: 18px;">:</td>
-                                                    <td style="width: 40.3645%; text-align: right; height: 18px;">91,770.00</td>
+                                                    <td style="width: 40.3645%; text-align: right; height: 18px;">
+                                                        <t t-set="total" t-value="cost_before_over + doc.over_packaging"/>
+                                                        <t t-esc="total"/>
+                                                    </td>
                                                 </tr>
                                                 <tr style="height: 18px;">
                                                     <td style="width: 53.6458%; text-align: right; height: 18px;">Total IDR</td>
                                                     <td style="width: 5.98955%; text-align: center; height: 18px;">:</td>
                                                     <td style="width: 40.3645%; text-align: right; height: 18px;">1.0###</td>
                                                 </tr>
-                                                <tr style="height: 18px;">
+                                                <!-- <tr style="height: 18px;">
                                                     <td style="width: 53.6458%; text-align: right; height: 18px;">Landed Cost</td>
                                                     <td style="width: 5.98955%; text-align: center; height: 18px;">:</td>
                                                     <td style="width: 40.3645%; text-align: right; height: 18px;">-</td>
@@ -276,7 +317,7 @@
                                                     <td style="width: 53.6458%; text-align: right; height: 18px;">Landed Quoted</td>
                                                     <td style="width: 5.98955%; text-align: center; height: 18px;">:</td>
                                                     <td style="width: 40.3645%; text-align: right; height: 18px;">-</td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </td>
