@@ -42,6 +42,8 @@ class MrpWorkorder(models.Model):
         for i in self:
             raw_po_line = []
             i.button_start()
+            if not i.supplier:
+                raise ValidationError("Please input the supplier first")
             po = i.env['purchase.order'].create({'partner_id': i.supplier.id,'state': 'draft','date_approve': datetime.now()})
             if po:
                 i.order_id = po.id
