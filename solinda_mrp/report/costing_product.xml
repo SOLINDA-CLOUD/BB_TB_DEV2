@@ -200,13 +200,13 @@
                                         <td style="width: 10%; border: 1px solid black;">
                                             <t t-esc="op.workcenter_id.name"/>
                                         </td>
-                                        <td style="width: 18%; border: 1px solid black;">
+                                        <td style="width: 24%; border: 1px solid black;">
                                             <t t-esc="op.fabric_id.product_id.name"/>
                                         </td>
                                         <td style="width: 18%; text-align: center; border: 1px solid black;">
                                             <t t-esc="op.color_id.name"/>
                                         </td>
-                                        <td style="width: 10%; text-align: center; border: 1px solid black;">
+                                        <td style="width: 7%; text-align: center; border: 1px solid black;">
                                             <t t-esc="op.hk"/>
                                         </td>
                                         <td style="width: 12.5%; text-align: right; border: 1px solid black;">
@@ -215,7 +215,7 @@
                                         <td style="width: 6.5%; text-align: center; border: 1px solid black;">
                                             <t t-esc="op.shrinkage"/>
                                         </td>
-                                        <td style="width: 10%; text-align: center; border: 1px solid black;">
+                                        <td style="width: 7%; text-align: center; border: 1px solid black;">
                                             <t t-esc="op.shkg"/>
                                         </td>
                                         <td style="width: 15%; text-align: right; border: 1px solid black;">
@@ -224,20 +224,22 @@
                                             <t t-esc="subtotal"/>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td style="width: 10%;"></td>
-                                        <td style="width: 18%; text-align: center;"></td>
-                                        <td style="width: 18%; text-align: center;"></td>
-                                        <td style="width: 10%; text-align: center;"></td>
-                                        <td style="width: 12.5%; text-align: center;"></td>
-                                        <td style="width: 16.5%; text-align: center; border: 1px solid black;" colspan="2">Total Services</td>
-                                        <!-- <td style="width: 10%; text-align: center;"></td> -->
-                                        <td style="width: 15%; text-align: right; border: 1px solid black;">
-                                            <t t-esc="total_services"/>
-                                        </td>
-                                    </tr>
                                 </t>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 18%; text-align: center;"></td>
+                                    <td style="width: 18%; text-align: center;"></td>
+                                    <td style="width: 10%; text-align: center;"></td>
+                                    <td style="width: 12.5%; text-align: center;"></td>
+                                    <td style="width: 16.5%; text-align: center; border: 1px solid black;" colspan="2">Total Services</td>
+                                    <!-- <td style="width: 10%; text-align: center;"></td> -->
+                                    <td style="width: 15%; text-align: right; border: 1px solid black;">
+                                        <t t-esc="total_services"/>
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
                         <br/>
                         <table style="border-collapse: collapse; width: 100%;" border="1">
