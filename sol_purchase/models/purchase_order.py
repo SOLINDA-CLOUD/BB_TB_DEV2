@@ -1,19 +1,5 @@
 from odoo import _, fields, api, models
 
-
-# class TypeModel(models.Model):
-#   _name = 'type.model'
-
-#   blank1 = fields.Char('Blank')
-#   blank2 = fields.Char('Blank')
-#   blank3 = fields.Char('Blank')
-#   blank4 = fields.Char('Blank')
-#   blank5 = fields.Char('Blank')
-#   blank6 = fields.Char('Blank')
-#   blank7 = fields.Char('Blank')
-#   blank8 = fields.Char('Blank')
-#   blank9 = fields.Char('Blank')
-
 class PurchaseOrder(models.Model):
   _inherit = 'purchase.order'
 
@@ -37,10 +23,16 @@ class PurchaseOrderLine(models.Model):
 
   product_id = fields.Many2one(string='Style Name')
   image = fields.Image(string='Image')
-  fabric = fields.Char(string='Fabric')
-  lining = fields.Char(string='Lining')
-  color = fields.Char(string='Color')
+  fabric_po = fields.Char(string='Fabric')
+  lining_po = fields.Char(string='Lining')
+  color = fields.Many2many('product.template.attribute.value', string="Size and Color")
   label = fields.Char(string='Label')
-  # type = fields.Many2one(comodel_name='type.model', string='Type')
-  type = fields.Char(string='Type')
   prod_comm = fields.Html(string='Production Comment')
+
+  @api.onchange('product_id')
+  def _onchange_image(self):
+      if self.product_id:
+          self.image = ''
+          if self.product_id.image_1920:
+            self.image = self.product_id.image_1920
+          self.image = self.image

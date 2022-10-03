@@ -11,11 +11,11 @@
           <attribute name="invisible">1</attribute>
         </xpath>
         <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
-          <field name="fabric" />
-          <field name="lining" />
-          <field name="color" />
+          <field name="fabric_po" />
+          <field name="lining_po" />
+          <field name="color" widget="many2many_tags" />
           <field name="label" />
-          <field name="type" />
+          <!-- <field name="type" /> -->
         </xpath>
         <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
           <field name="prod_comm" />
