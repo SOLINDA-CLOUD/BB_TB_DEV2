@@ -24,9 +24,9 @@ class PurchaseOrder(models.Model):
   _inherit = 'purchase.order'
 
   attention = fields.Many2one('res.partner', string='Attention')
-  supplier = fields.Many2one(compodel_name='supplier.comp',string='Supplier')
-  sub_suplier = fields.Many2one(compodel_name='sub.supplier.comp',string='Sub Supplier')
-  brand = fields.Many2one(compodel_name='brand.comp',string='Brand')
+  supplier = fields.Many2one(comodel_name='supplier.comp',string='Supplier')
+  sub_suplier = fields.Many2one(comodel_name='sub.supplier.comp',string='Sub Supplier')
+  brand = fields.Many2one(comodel_name='brand.comp',string='Brand')
   buyer = fields.Many2one(comodel_name='buyer.comp',string='Buyer')
 
   supplier_po = fields.Char('Supplier PO')
@@ -46,7 +46,7 @@ class PurchaseOrderLine(models.Model):
   fabric_po = fields.Char(string='Fabric')
   lining_po = fields.Char(string='Lining')
   color = fields.Many2many('product.template.attribute.value', string="Size and Color")
-  label = fields.Many2one(compodel_name='label.comp', string='Label')
+  label = fields.Many2one(comodel_name='label.comp', string='Label')
   prod_comm = fields.Html(string='Production compment')
 
   @api.onchange('product_id')
