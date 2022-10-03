@@ -1,13 +1,33 @@
 from odoo import _, fields, api, models
 
+class BuyerComp(models.Model):
+  _name = 'buyer.comp'
+  name = fields.Char('buyer')
+
+class BrandComp(models.Model):
+  _name = 'brand.comp'
+  name = fields.Char('Brand')
+
+class SubSupplierComp(models.Model):
+  _name = 'sub.supplier.comp'
+  name = fields.Char('sub supplier')
+
+class SupplierComp(models.Model):
+  _name = 'supplier.comp'
+  name = fields.Char('supplier')
+
+class LabelComp(models.Model):
+  _name = 'label.comp'
+  name = fields.Char('Label')
+
 class PurchaseOrder(models.Model):
   _inherit = 'purchase.order'
 
-  attention = fields.Char(string='Attention')
-  supplier = fields.Char('Supplier')
-  sub_suplier = fields.Char('Sub Suplier')
-  brand = fields.Char('Brand')
-  buyer = fields.Char('Buyer')
+  attention = fields.Many2one('res.partner', string='Attention')
+  supplier = fields.Many2one(compodel_name='supplier.comp',string='Supplier')
+  sub_suplier = fields.Many2one(compodel_name='sub.supplier.comp',string='Sub Supplier')
+  brand = fields.Many2one(compodel_name='brand.comp',string='Brand')
+  buyer = fields.Many2one(comodel_name='buyer.comp',string='Buyer')
 
   supplier_po = fields.Char('Supplier PO')
   po = fields.Char('PO')
@@ -26,8 +46,8 @@ class PurchaseOrderLine(models.Model):
   fabric_po = fields.Char(string='Fabric')
   lining_po = fields.Char(string='Lining')
   color = fields.Many2many('product.template.attribute.value', string="Size and Color")
-  label = fields.Char(string='Label')
-  prod_comm = fields.Html(string='Production Comment')
+  label = fields.Many2one(compodel_name='label.comp', string='Label')
+  prod_compm = fields.Html(string='Production compment')
 
   @api.onchange('product_id')
   def _onchange_image(self):
