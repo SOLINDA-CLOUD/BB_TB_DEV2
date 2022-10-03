@@ -186,6 +186,10 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             "date_planned": datetime(
                 date_required.year, date_required.month, date_required.day
             ),
+            'fabric_po': item.line_id.fabric.name,
+            'lining_po': item.line_id.lining.name,
+            'image': item.line_id.image,
+            'color': product.product_template_variant_value_ids,
             "move_dest_ids": [(4, x.id) for x in item.line_id.move_dest_ids],
         }
         if item.line_id.analytic_tag_ids:

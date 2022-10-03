@@ -23,12 +23,10 @@ class PurchaseOrderLine(models.Model):
 
   product_id = fields.Many2one(string='Style Name')
   image = fields.Image(string='Image')
-  fabric = fields.Char(string='Fabric')
-  lining = fields.Char(string='Lining')
-  color = fields.Char(string='Color')
+  fabric_po = fields.Char(string='Fabric')
+  lining_po = fields.Char(string='Lining')
+  color = fields.Many2many('product.template.attribute.value', string="Size and Color")
   label = fields.Char(string='Label')
-  # type = fields.Many2one(comodel_name='type.model', string='Type')
-  type = fields.Char(string='Size')
   prod_comm = fields.Html(string='Production Comment')
 
   @api.onchange('product_id')
