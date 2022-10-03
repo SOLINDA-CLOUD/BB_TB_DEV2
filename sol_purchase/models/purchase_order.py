@@ -47,7 +47,7 @@ class PurchaseOrderLine(models.Model):
   lining_po = fields.Char(string='Lining')
   color = fields.Many2many('product.template.attribute.value', string="Size and Color")
   label = fields.Many2one(compodel_name='label.comp', string='Label')
-  prod_compm = fields.Html(string='Production compment')
+  prod_comm = fields.Html(string='Production compment')
 
   @api.onchange('product_id')
   def _onchange_image(self):
