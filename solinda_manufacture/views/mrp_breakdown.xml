@@ -61,7 +61,7 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="mrp_breakdown_menu" name="Manufacturing Details" action="mrp_breakdown_action" parent="mrp.menu_mrp_routing_action" sequence="10"/>
+        <menuitem id="mrp_breakdown_menu" name="Manufacturing Details" action="mrp_breakdown_action" parent="mrp.menu_mrp_manufacturing" sequence="1"/>
 
     </data>
 </odoo>
