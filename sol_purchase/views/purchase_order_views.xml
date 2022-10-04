@@ -34,7 +34,7 @@
         </xpath>
         <xpath expr="//field[@name='picking_type_id']" position="before">
           <field name="supplier_po" attrs="{'invisible': [('company_id', '=', 1)]}"/>
-          <field name="po" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+          <field name="po" attrs="{'invisible': [('company_id', '=', 1)]}"/>
         </xpath>
 
       </field>
