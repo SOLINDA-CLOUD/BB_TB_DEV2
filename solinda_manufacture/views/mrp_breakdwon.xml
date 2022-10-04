@@ -24,6 +24,9 @@
             <field name="model">mrp.breakdown</field>
             <field name="arch" type="xml">
                 <form string="">
+                    <header>
+                        <button string="Create MO" name="break_down_to_mo" type="object" class="oe_highlight"/>
+                    </header>
                     <sheet>
                         <group col="4">
                             <field name="name"/>
