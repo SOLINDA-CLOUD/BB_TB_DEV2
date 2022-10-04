@@ -15,3 +15,4 @@ access_brand_comp,sol_purchase.brand_comp,model_brand_comp,base.group_user,1,1,1
 access_supplier_comp,sol_purchase.supplier_comp,model_supplier_comp,base.group_user,1,1,1,1
 access_sub_supplier_comp,sol_purchase.sub_supplier_comp,model_sub_supplier_comp,base.group_user,1,1,1,1
 access_label_comp,sol_purchase.label_comp,model_label_comp,base.group_user,1,1,1,1
+access_data_master_story,sol_purchase.data_master_story,model_data_master_story,base.group_user,1,1,1,1

@@ -31,6 +31,7 @@
         'report/report_action.xml',
         'report/report_sample_development.xml',
         'report/report_pattern.xml',
+        'views/data_master_story.xml',
         # 'views/templates.xml',
         'views/sequence_data.xml',
     ],
