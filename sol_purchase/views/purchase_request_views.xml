@@ -37,7 +37,7 @@
           <label for="ordering_date"/>
             <div class="o_row">
               <field name="ordering_date" placeholder="Start Date" attrs="{'invisible': [('state', 'not in', ('done'))]}"/> -
-              <field name="elivery_date" placeholder="End Date" attrs="{'invisible': [('state', 'not in', ('done'))]}"/>
+              <field name="delivery_date" placeholder="End Date" attrs="{'invisible': [('state', 'not in', ('done'))]}"/>
             </div>
         </xpath>
         <xpath expr="//field[@name='origin']" position="attributes">
