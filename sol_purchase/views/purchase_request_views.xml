@@ -109,7 +109,7 @@
           </page>
         </xpath>
 
-        <xpath expr="//notebook//page[2]" position="after">
+        <!-- <xpath expr="//notebook//page[2]" position="after">
           <page string="Fabric and Lining" attrs="{'invisible': [('state', 'not in', ('done'))]}">
             <field name="fabric_lining_ids">
               <tree editable="bottom">
@@ -126,9 +126,9 @@
               </form>
             </field>
           </page>
-        </xpath>
+        </xpath> -->
 
-        <xpath expr="//notebook//page[3]" position="after">
+        <xpath expr="//notebook//page[2]" position="after">
           <page string="Seams and Grading" attrs="{'invisible': [('state', 'not in', ('done'))]}">
             <group>
               <field name="seams" placeholder="Comment ..."/>
@@ -142,7 +142,7 @@
           </page>
         </xpath>
 
-        <xpath expr="//notebook//page[4]" position="after">
+        <xpath expr="//notebook//page[3]" position="after">
           <page string="Label Hardware" attrs="{'invisible': [('state', 'not in', ('done'))]}">
             <field name="label_hardware_ids">
               <tree editable="bottom">
@@ -161,7 +161,7 @@
           </page>
         </xpath>
 
-        <xpath expr="//notebook//page[5]" position="after">
+        <xpath expr="//notebook//page[4]" position="after">
           <page string="Label Dress" attrs="{'invisible': [('state', 'not in', ('done'))]}">
             <field name="label_dress_ids">
               <tree editable="bottom">
@@ -180,7 +180,7 @@
           </page>
         </xpath>
 
-        <xpath expr="//notebook//page[6]" position="after">
+        <xpath expr="//notebook//page[5]" position="after">
           <page string="Production Summary" attrs="{'invisible': [('state', 'not in', ('done'))]}">
             <field name="prod_summ_ids">
               <tree editable="bottom">
