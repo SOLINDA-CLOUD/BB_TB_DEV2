@@ -23,7 +23,7 @@
             <field name="name">mrp.breakdown.view.form</field>
             <field name="model">mrp.breakdown</field>
             <field name="arch" type="xml">
-                <form string="">
+                <form string="Manufacturing">
                     <header>
                         <button string="Create MO" name="break_down_to_mo" type="object" class="oe_highlight"/>
                     </header>
@@ -39,7 +39,7 @@
                         </group>
                         <notebook>
                             <page name="variant_detail" string="Variant Detail">
-                                <field name="variant_detail_ids">
+                                <field name="variant_detail_ids" nolabel="1">
                                     <tree>
                                         <field name="product_id"/>
                                         <field name="product_template_variant_value_ids" widget="many2many_tags"/>
@@ -59,14 +59,9 @@
             <field name="name">Manufacturing</field>
             <field name="res_model">mrp.breakdown</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
-            <field name="help" type="html">
-
-            </field>
         </record>
 
-        <menuitem id="mrp_breakdown_menu" name="Manufacturing Detail" action="mrp_breakdown_action" parent="mrp.menu_mrp_routing_action" sequence="10"/>
+        <menuitem id="mrp_breakdown_menu" name="Manufacturing Details" action="mrp_breakdown_action" parent="mrp.menu_mrp_routing_action" sequence="10"/>
 
     </data>
 </odoo>

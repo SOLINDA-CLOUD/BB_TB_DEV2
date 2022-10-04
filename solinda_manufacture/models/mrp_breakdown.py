@@ -19,6 +19,13 @@ class VariantDetail(models.Model):
                 'uom_id' : i.product_id.uom_id.id
             })
 
+class MrpBreakdownLine(models.Model):
+    _name = 'mrp.breakdown.line'
+    _description = 'Mrp Breakdown Line'
+
+    breakdown_id = fields.Many2one('mrp.breakdown', string='Breakdown')
+
+    
 
 class MrpBreakdown(models.Model):
     _name = 'mrp.breakdown'
@@ -33,6 +40,8 @@ class MrpBreakdown(models.Model):
     product_qty = fields.Float('Quantity',default=1.0,readonly=True, required=True)
     uom_id = fields.Many2one('uom.uom', string='Unit of Measure',related="product_id.uom_id")
     variant_detail_ids = fields.One2many('variant.detail', 'breakdown_id', string='Variant Detail')
+    breakdown_line_ids = fields.One2many('mrp.breakdown.line', 'breakdown_id', string='Details')
+
 
     def break_down_to_mo(self):
         for i in self:
