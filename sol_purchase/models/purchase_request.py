@@ -86,6 +86,12 @@ class Brand(models.Model):
 
     name = fields.Char('Brand')
 
+class DataMasterStory(models.Model):
+    _name = 'data.master.story'
+    _description = 'Data Master Story'
+
+    name = fields.Char('Story Name')
+
 class PurchaseRequestLine(models.Model):
     _inherit = 'purchase.request.line'
 
@@ -94,7 +100,7 @@ class PurchaseRequestLine(models.Model):
     sub_department = fields.Char(string='Sub Department')
     fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric', ondelete='cascade')
     lining= fields.Many2one(comodel_name='data.fabric.lining', string='Lining', ondelete='cascade')
-    view_story = fields.Char(string='Story', store=True, related='request_id.story_id')
+    view_story = fields.Many2one(string='Story', related='request_id.story_id', readonly=True)
 
     @api.onchange('product_id')
     def _onchange_image(self):
@@ -111,7 +117,7 @@ class PurchaseRequest(models.Model):
     request_detail_id = fields.Many2one(string='Original Sample', comodel_name='request.detail', ondelete='cascade')
     notes = fields.Html(string='Notes')
     date_start = fields.Date(string='Transaction Date')
-    story_id = fields.Char(string='Story')
+    story_id = fields.Many2one(string='Story', comodel_name='data.master.story')
 
     ### PATTERN ALTERATION ###
     purchase_custom_ids = fields.One2many('custom.pattern', 'parent_custom_id', string='Custom', copy=True)
