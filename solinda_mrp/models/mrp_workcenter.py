@@ -5,6 +5,6 @@ class MrpWorkcenter(models.Model):
 
     product_service_id = fields.Many2one(
         comodel_name='product.product',
-        domain=[('type', '=', 'service')],
-        string='Product Service'
+        domain=[('type', '=', 'consu')],
+        string='Product'
         )
