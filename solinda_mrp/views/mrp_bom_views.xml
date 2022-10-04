@@ -18,8 +18,6 @@
             </xpath>
             <field name="company_id" position="after">
                 <field name="over_packaging" />
-                <field name="landed_cost" />
-                <field name="landed_quoted" />
             </field>
             <xpath expr="//notebook/page/field/tree/field[@name='product_id']" position="after">
                 <field name="color" />
