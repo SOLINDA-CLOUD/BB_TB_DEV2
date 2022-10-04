@@ -17,7 +17,7 @@ class PurchaseOrder(models.Model):
     breakdown_id = fields.Many2one('mrp.breakdown', string='Breakdown')
 
     @api.onchange('order_line.product_id')
-    def _onchange_order_line.product_id(self):
+    def _onchange_order_line_product_id(self):
         temp2 = []
         for i in self:
             # temp = i.order_line.mapped('product_id.product_tmpl_id'):
