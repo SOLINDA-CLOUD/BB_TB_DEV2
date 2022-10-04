@@ -39,7 +39,7 @@ class MrpBreakdown(models.Model):
             if i.product_id.product_variant_ids:
                 for l in i.product_id.product_variant_ids:
                     mo_temp = self.env["mrp.production"].create({
-                        "product_id": ,
+                        "name": ('New'),
                         })
 
     # product_uom_qty = fields.Float(string='Total Quantity', compute='_compute_product_uom_qty', store=True)
