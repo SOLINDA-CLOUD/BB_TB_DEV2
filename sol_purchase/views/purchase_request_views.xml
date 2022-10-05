@@ -34,10 +34,10 @@
           <field name="test" invisible="1"/>
           <field name="request_detail_id" attrs="{'readonly': [('state', 'not in', ('draft'))]}"/>
           <field name="story_id" attrs="{'readonly': [('state', 'not in', ('draft'))]}"/>
-          <label for="ordering_date"/>
-            <div class="o_row">
-              <field name="ordering_date" placeholder="Start Date" attrs="{'invisible': [('state', 'not in', ('done'))]}"/> -
-              <field name="delivery_date" placeholder="End Date" attrs="{'invisible': [('state', 'not in', ('done'))]}"/>
+          <label for="ordering_date" attrs="{'invisible': [('state', 'not in', ('done'))]}"/>
+            <div class="o_row" attrs="{'invisible': [('state', 'not in', ('done'))]}">
+              <field name="ordering_date" placeholder="Start Date" /> -
+              <field name="delivery_date" placeholder="End Date" />
             </div>
         </xpath>
         <xpath expr="//field[@name='origin']" position="attributes">
