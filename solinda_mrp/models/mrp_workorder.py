@@ -50,7 +50,7 @@ class MrpWorkorder(models.Model):
             raw_po_line.append((0,0, {
                 'product_id': i.workcenter_id.product_service_id.id,
                 # 'fabric': i.fabric_id.product_id.name,
-                'lining':'',
+                # 'lining':'',
                 'color':i.color_id.name,
                 'product_qty': i.qty_producing,
             }))           
