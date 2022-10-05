@@ -29,6 +29,7 @@ class PurchaseOrder(models.Model):
 
     def create_mrp_breakdown(self):
         self = self.sudo()
+        breakdown = ''
         for i in self:
             for l in i.temp_prodmo_ids:
                 breakdown = self.env["mrp.breakdown"].create({
