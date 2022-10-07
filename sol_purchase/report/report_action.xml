@@ -41,6 +41,8 @@
       <field name="binding_model_id" ref="purchase_request.model_purchase_request"/>
       <field name="binding_type">report</field>
     </record>
+
+
     
   
   </data>
