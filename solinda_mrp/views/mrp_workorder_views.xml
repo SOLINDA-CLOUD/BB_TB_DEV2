@@ -14,6 +14,8 @@
                 <field name="hk" />
                 <field name="shrinkage" />
                 <field name="picking_ids" widget="many2many_tags" optional="hide"/>
+                <field name="in_date" optional="show"/>
+                <field name="out_date" optional="show"/>
             </field>
 
             <xpath expr="//field[@name='duration']" position="attributes">

@@ -29,6 +29,7 @@ class PurchaseOrder(models.Model):
 
     def create_mrp_breakdown(self):
         self = self.sudo()
+        breakdown = ''
         for i in self:
             for l in i.temp_prodmo_ids:
                 breakdown = self.env["mrp.breakdown"].create({
@@ -42,12 +43,12 @@ class PurchaseOrder(models.Model):
                 if breakdown:
                     i.breakdown_id = breakdown.id
         
-            return {
-                'name': _("Manufacturing"),
-                'view_mode': 'form',
-                'view_type': 'form',
-                'res_model': 'temp.product.mo',
-                'type': 'ir.actions.act_window',
-                # 'target': 'new',
-                'res_id': breakdown.id,
-            } 
+                    return {
+                        'name': _("Manufacturing"),
+                        'view_mode': 'form',
+                        'view_type': 'form',
+                        'res_model': 'temp.product.mo',
+                        'type': 'ir.actions.act_window',
+                        # 'target': 'new',
+                        'res_id': breakdown.id,
+                    } 
