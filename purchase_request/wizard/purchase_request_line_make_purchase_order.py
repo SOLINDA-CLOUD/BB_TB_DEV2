@@ -179,7 +179,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             "order_id": po.id,
             "product_id": product.id,
             "product_uom": product.uom_po_id.id or product.uom_id.id,
-            "price_unit": 0.0,
+            "price_unit": item.line_id.unit_price,
             "product_qty": qty,
             "account_analytic_id": item.line_id.analytic_account_id.id,
             "purchase_request_lines": [(4, item.line_id.id)],
@@ -229,6 +229,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                     datetime(
                         date_required.year, date_required.month, date_required.day
                     ),
+                    "price_unit", "=", item.line_id.unit_price,
                 )
             ]
         if not item.product_id:
@@ -307,6 +308,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             po_line.date_planned = datetime(
                 date_required.year, date_required.month, date_required.day
             )
+            po_line.price_unit= item.line_id.unit_price
             res.append(purchase.id)
 
         return {

@@ -17,6 +17,7 @@
           <field name="lining" />
           <field name="department"/>
           <field name="sub_department" />
+          <field name="unit_price" widget="monetary" />
         </xpath>
         <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='estimated_cost']" position="attributes">
           <attribute name="invisible">1</attribute>
@@ -50,7 +51,7 @@
           <attribute name="invisible">1</attribute>
         </xpath>
         <xpath expr="//notebook/page/group" position="after">
-          <group string="Fit Notes" attrs="{'invisible': [('state', 'in', ('done'))]}">
+          <group string="Notes" attrs="{'invisible': [('state', 'in', ('done'))]}">
             <field name="notes" nolabel="1" placeholder="Comments ....." />
           </group>
         </xpath>
