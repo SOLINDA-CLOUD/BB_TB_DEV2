@@ -101,7 +101,6 @@ class PurchaseRequestLine(models.Model):
     fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric', ondelete='cascade')
     lining= fields.Many2one(comodel_name='data.fabric.lining', string='Lining', ondelete='cascade')
     view_story = fields.Many2one(string='Story', related='request_id.story_id', readonly=True)
-    unit_price = fields.Monetary(string='Unit Price', copy=True, default=0)
 
     @api.onchange('product_id')
     def _onchange_image(self):
