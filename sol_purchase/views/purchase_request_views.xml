@@ -94,7 +94,6 @@
                 <field name="size" />
                 <field name="size_approve" />
                 <field name="fabric" />
-                <field name="alt_cmnt" />
               </tree>
               <form>
                 <group>
@@ -105,10 +104,14 @@
                   <field name="size" />
                   <field name="size_approve" />
                   <field name="fabric" />
-                  <field name="alt_cmnt" />
                 </group>
               </form>
             </field>
+            <group >
+              <group string="ALTERATION COMMENT">
+                <field name="alt_cmnt" nolabel="1" placeholder="Comments ....." />
+              </group>
+            </group>
           </page>
         </xpath>
 

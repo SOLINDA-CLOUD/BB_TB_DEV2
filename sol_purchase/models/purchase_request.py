@@ -18,7 +18,6 @@ class CustomPattern(models.Model):
     parent_custom_id = fields.Many2one('purchase.request', string='custom')
     print_color_id = fields.Many2one(comodel_name='print.color', string='Print/Color', ondelete='cascade')
     pattern_marker = fields.Char('Pattern Marker')
-    alt_cmnt = fields.Html('Alteration Comment')
     model_ptr = fields.Char('Model')
     size = fields.Char('Size')
     size_approve = fields.Char('Size Approve')
@@ -96,7 +95,7 @@ class PurchaseRequestLine(models.Model):
     _inherit = 'purchase.request.line'
 
     image = fields.Image(string='Fabric Swatch')
-    department = fields.Char(string='Department')
+    department = fields.Many2one('product.category', string='Department')
     sub_department = fields.Char(string='Sub Department')
     fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric', ondelete='cascade')
     lining= fields.Many2one(comodel_name='data.fabric.lining', string='Lining', ondelete='cascade')
@@ -109,15 +108,24 @@ class PurchaseRequestLine(models.Model):
             if self.product_id.image_1920:
                 self.image = self.product_id.image_1920
             self.image = self.image
+    
+    @api.onchange('product_id')
+    def _onchange_department(self):
+        if self.product_id:
+            department = ''
+            if self.product_id.categ_id:
+                self.department = self.product_id.categ_id
+            return department
 
 class PurchaseRequest(models.Model):
     _inherit = 'purchase.request'
 
     ### SAMPLE DEVELOPMENT ###
     request_detail_id = fields.Many2one(string='Original Sample', comodel_name='request.detail', ondelete='cascade')
-    notes = fields.Html(string='Notes')
+    notes_ptr = fields.Html(string='ALTERATION COMMENT')
     date_start = fields.Date(string='Transaction Date')
     story_id = fields.Many2one(string='Story', comodel_name='data.master.story')
+    alt_cmnt = fields.Html('Alteration Comment')
 
     ### PATTERN ALTERATION ###
     purchase_custom_ids = fields.One2many('custom.pattern', 'parent_custom_id', string='Custom', copy=True)
