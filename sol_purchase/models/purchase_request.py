@@ -46,7 +46,7 @@ class LabelDress(models.Model):
     _description = 'Label Dress'
 
     label_dress_id = fields.Many2one('purchase.request', string='label dress ids')
-    brand = fields.Many2one(comodel_name='brand', string='Brand', ondelete='cascade')
+    brand = fields.Many2one('product.brand', string='Brand', ondelete='cascade')
     image = fields.Image('Label Pict')
     comment = fields.Html('Comment')
 
