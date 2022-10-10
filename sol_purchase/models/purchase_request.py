@@ -122,7 +122,7 @@ class PurchaseRequest(models.Model):
 
     ### SAMPLE DEVELOPMENT ###
     request_detail_id = fields.Many2one(string='Original Sample', comodel_name='request.detail', ondelete='cascade')
-    notes_ptr = fields.Html(string='ALTERATION COMMENT')
+    notes = fields.Html(string='Notes')
     date_start = fields.Date(string='Transaction Date')
     story_id = fields.Many2one(string='Story', comodel_name='data.master.story')
     alt_cmnt = fields.Html('Alteration Comment')
