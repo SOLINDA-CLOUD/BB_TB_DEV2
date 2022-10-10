@@ -17,7 +17,7 @@ class CustomPattern(models.Model):
     # name = fields.Char('Print/Color')
     parent_custom_id = fields.Many2one('purchase.request', string='custom')
     print_color_id = fields.Many2one('product.template.attribute.value', string='Print/Color', ondelete='cascade')
-    model_ptr = fields.Many2one('product.category.parent_id', string='Model')
+    model_ptr = fields.Many2one('product.category', 'categ_id.parent_id', string='Model')
     size = fields.Many2one('product.template.attribute.value', string='Size')
     pattern_marker = fields.Char('Pattern Marker')
     size_approve = fields.Char('Size Approve')
