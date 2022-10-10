@@ -18,6 +18,12 @@
           <field name="department"/>
           <field name="sub_department" />
         </xpath>
+        <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='analytic_account_id']" position="replace">
+          <field name="analytic_account_id" optional="hide"/> 
+        </xpath>
+        <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='analytic_tag_ids']" position="replace">
+          <field name="analytic_tag_ids" optional="hide"/> 
+        </xpath>
         <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='estimated_cost']" position="attributes">
           <attribute name="invisible">1</attribute>
         </xpath>
