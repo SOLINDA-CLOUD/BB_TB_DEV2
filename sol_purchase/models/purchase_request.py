@@ -16,10 +16,10 @@ class CustomPattern(models.Model):
 
     # name = fields.Char('Print/Color')
     parent_custom_id = fields.Many2one('purchase.request', string='custom')
-    print_color_id = fields.Many2one(comodel_name='print.color', string='Print/Color', ondelete='cascade')
+    print_color_id = fields.Many2one('product.template.attribute.value', string='Print/Color', ondelete='cascade')
+    model_ptr = fields.Many2one('product.category.parent_id', string='Model')
+    size = fields.Many2one('product.template.attribute.value', string='Size')
     pattern_marker = fields.Char('Pattern Marker')
-    model_ptr = fields.Char('Model')
-    size = fields.Char('Size')
     size_approve = fields.Char('Size Approve')
     fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric')
 
@@ -78,12 +78,6 @@ class PrintColor(models.Model):
     _description = 'Print Color'
 
     name = fields.Char(string='color')
-
-class Brand(models.Model):
-    _name = 'brand'
-    _description = 'Brand'
-
-    name = fields.Char('Brand')
 
 class DataMasterStory(models.Model):
     _name = 'data.master.story'
