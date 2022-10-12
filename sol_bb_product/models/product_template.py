@@ -16,7 +16,7 @@ class ProductTemplate(models.Model):
 
     brand = fields.Many2one('product.brand', string='Brand')
     stock_type = fields.Many2one('stock.type', string='Stock Type')
-    fabric_lining = fields.Many2one('data.fabric.lining', string='Fabric/Lining')
+    fabric_lining = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric/Lining')
 
 class ProductBrand(models.Model):
     _name = 'product.brand'
@@ -34,4 +34,4 @@ class DataFabricLining(models.Model):
     _name = 'data.fabric.lining'
     _description = 'Database Fabric and Lining'
 
-    name = fields.Char(string='fabric and lining')
+    name = fields.Char(string='Name')
