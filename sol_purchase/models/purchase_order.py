@@ -4,17 +4,9 @@ class BuyerComp(models.Model):
   _name = 'buyer.comp'
   name = fields.Char('buyer')
 
-class BrandComp(models.Model):
-  _name = 'brand.comp'
-  name = fields.Char('Brand')
-
-class SubSupplierComp(models.Model):
-  _name = 'sub.supplier.comp'
-  name = fields.Char('sub supplier')
-
-class SupplierComp(models.Model):
-  _name = 'supplier.comp'
-  name = fields.Char('supplier')
+class AttComp(models.Model):
+  _name = 'att.comp'
+  name = fields.Char('attention')
 
 class LabelComp(models.Model):
   _name = 'label.comp'
@@ -23,14 +15,15 @@ class LabelComp(models.Model):
 class PurchaseOrder(models.Model):
   _inherit = 'purchase.order'
 
-  attention = fields.Many2one('res.partner', string='Attention')
-  supplier = fields.Many2one(comodel_name='supplier.comp',string='Supplier')
-  sub_suplier = fields.Many2one(comodel_name='sub.supplier.comp',string='Sub Supplier')
-  brand = fields.Many2one(comodel_name='brand.comp',string='Brand')
+  attention = fields.Many2one(comodel_name='att.comp', string='Attention')
+  sub_suplier = fields.Many2one('res.partner', string='Sub Supplier')
+  brand = fields.Many2one('product.brand', string='Brand')
   buyer = fields.Many2one(comodel_name='buyer.comp',string='Buyer')
-
+  
   supplier_po = fields.Char('Supplier PO')
   po = fields.Char('PO')
+  ordering_date = fields.Date(string='Delivery Date', states={'purchase': [('readonly', True)]})
+  delivery_date = fields.Date(states={'purchase': [('readonly', True)]})
 
   @api.model
   def create(self, vals):
