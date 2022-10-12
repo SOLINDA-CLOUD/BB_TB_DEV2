@@ -23,15 +23,6 @@ class CustomPattern(models.Model):
     size_approve = fields.Char('Size Approve')
     fabric = fields.Many2one('data.fabric.lining', string='Fabric')
 
-# class FabricLining(models.Model):
-#     _name = 'fabric.lining'
-#     _description = 'Fabric Lining'
-
-#     fabric_lining_id = fields.Many2one('purchase.request', string='fabric lining ids')
-#     fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric')
-#     lining = fields.Many2one(comodel_name='data.fabric.lining', string='Lining')
-#     color = fields.Many2one(comodel_name='print.color', string='Color')
-
 class LabelHardware(models.Model):
     _name = 'label.hardware'
     _description = 'Label Hardware'
