@@ -21,7 +21,7 @@ class CustomPattern(models.Model):
     size = fields.Many2one('product.template.attribute.value', string='Size')
     pattern_marker = fields.Char('Pattern Marker')
     size_approve = fields.Char('Size Approve')
-    fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric')
+    fabric = fields.Many2one('data.fabric.lining', string='Fabric')
 
 # class FabricLining(models.Model):
 #     _name = 'fabric.lining'
@@ -68,7 +68,6 @@ class RequestDetail(models.Model):
     sample_in_size = fields.Char(string='Please Make Sample In Size')
 
 
-
 class PrintColor(models.Model):
     _name = 'print.color'
     _description = 'Print Color'
@@ -87,8 +86,8 @@ class PurchaseRequestLine(models.Model):
     image = fields.Image(string='Fabric Swatch')
     department = fields.Many2one('product.category', string='Department')
     sub_department = fields.Char(string='Sub Department')
-    fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric', ondelete='cascade')
-    lining= fields.Many2one(comodel_name='data.fabric.lining', string='Lining', ondelete='cascade')
+    fabric = fields.Many2one('data.fabric.lining', string='Fabric', ondelete='cascade')
+    lining= fields.Many2one('data.fabric.lining', string='Lining', ondelete='cascade')
     view_story = fields.Many2one(string='Story', related='request_id.story_id', readonly=True)
 
     @api.onchange('product_id')
