@@ -94,10 +94,10 @@
           <page string="Custom Pattern" attrs="{'invisible': [('test', '=', False)]}">
             <field name="purchase_custom_ids">
               <tree editable="bottom">
-                <!-- <field name="print_color_id" /> -->
+                <field name="print_color_id" />
                 <field name="pattern_marker" />
                 <!-- <field name="model_ptr"/> -->
-                <!-- <field name="size" /> -->
+                <field name="size" />
                 <field name="size_approve" />
                 <field name="fabric" />
               </tree>
