@@ -16,6 +16,7 @@ class PurchaseOrder(models.Model):
   _inherit = 'purchase.order'
 
   attention = fields.Many2one(comodel_name='att.comp', string='Attention')
+  supplier = fields.Char('Supplier')
   sub_suplier = fields.Many2one('res.partner', string='Sub Supplier')
   brand = fields.Many2one('product.brand', string='Brand')
   buyer = fields.Many2one(comodel_name='buyer.comp',string='Buyer')
