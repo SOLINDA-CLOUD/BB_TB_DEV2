@@ -20,12 +20,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','mrp','purchase_stock','sol_purchase'],
+    'depends': ['base','mrp','purchase_stock','sol_purchase','solinda_mrp'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/purchase.xml',
+        'views/company.xml',
         'views/mrp_breakdown.xml',
         'views/templates.xml',
     ],
