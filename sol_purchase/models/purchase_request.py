@@ -23,14 +23,14 @@ class CustomPattern(models.Model):
     size_approve = fields.Char('Size Approve')
     fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric')
 
-class FabricLining(models.Model):
-    _name = 'fabric.lining'
-    _description = 'Fabric Lining'
+# class FabricLining(models.Model):
+#     _name = 'fabric.lining'
+#     _description = 'Fabric Lining'
 
-    fabric_lining_id = fields.Many2one('purchase.request', string='fabric lining ids')
-    fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric')
-    lining = fields.Many2one(comodel_name='data.fabric.lining', string='Lining')
-    color = fields.Many2one(comodel_name='print.color', string='Color')
+#     fabric_lining_id = fields.Many2one('purchase.request', string='fabric lining ids')
+#     fabric = fields.Many2one(comodel_name='data.fabric.lining', string='Fabric')
+#     lining = fields.Many2one(comodel_name='data.fabric.lining', string='Lining')
+#     color = fields.Many2one(comodel_name='print.color', string='Color')
 
 class LabelHardware(models.Model):
     _name = 'label.hardware'
@@ -67,11 +67,7 @@ class RequestDetail(models.Model):
     approved_size = fields.Char(string='Sample In Approved Size')
     sample_in_size = fields.Char(string='Please Make Sample In Size')
 
-class DataFabricLining(models.Model):
-    _name = 'data.fabric.lining'
-    _description = 'Database Fabric and Lining'
 
-    name = fields.Char(string='fabric and lining')
 
 class PrintColor(models.Model):
     _name = 'print.color'
@@ -141,7 +137,7 @@ class PurchaseRequest(models.Model):
     grading_intructions = fields.Html(string='Grading Intructions')
     fit_changes = fields.Html(string='Fit Changes')
 
-    fabric_lining_ids = fields.One2many('fabric.lining', 'fabric_lining_id', string='fabric lining id')
+    # fabric_lining_ids = fields.One2many('fabric.lining', 'fabric_lining_id', string='fabric lining id')
     label_hardware_ids = fields.One2many('label.hardware', 'label_hardware_id', string='label hardware id')
     label_dress_ids = fields.One2many('label.dress', 'label_dress_id', string='label dress id')
     prod_summ_ids = fields.One2many('production.summary', 'prod_summ_id', string='prod summ id')
