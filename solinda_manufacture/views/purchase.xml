@@ -12,6 +12,7 @@
         <xpath expr="//header" position="inside">
           <button string="Create Breakdown" name="create_mrp_breakdown" type="object" class="oe_highlight"/>
           <button string="Create MO" name="create_mrp_production" type="object" class="oe_highlight"/>
+          <button string="Create MO 2" name="create_mo_production" type="object" class="oe_highlight"/>
           <button string="Show MO" name="show_mrp_prod" type="object" class="oe_highlight"/>
         </xpath>
         <xpath expr="//field[@name='currency_id']" position="after">

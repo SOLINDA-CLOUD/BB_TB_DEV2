@@ -45,6 +45,52 @@ class PurchaseOrder(models.Model):
             'context': {'create': False}
         }
 
+    def create_mo_production(self):
+        mrp,mo_line = [],[]
+        BoM = False
+        self = self.sudo()
+        for i in self:
+            if i.mrp_count > 0:
+                return i.show_mrp_prod()
+            else:
+                company = self.env["res.company"].search([('is_manufacturing', '=', True)],limit=1)
+                if not company:
+                    raise ValidationError("Company for manufacture is not defined")
+                header_product = i.order_line.filtered(lambda x: x.product_id.detailed_type, 'in', ['consu','product'])[0]
+                prod_template = i.order_line.mapped('product_id.product_tmpl_id.id')
+                # if len(prod_template) > 1:
+                #     return
+                # else:
+                #     return
+                
+                for l in header_product:
+                    if l.product_id:
+                        if l.product_id.bom_count > 0:
+                            BoM = self.env["mrp.bom"].search([('product_id', '=', l.product_id.id)],order = 'retail_price desc',limit=1).id
+                        mp = self.env["mrp.production"].create({
+                            'name': _('New'),
+                            'product_id': l.product_id.id,
+                            'product_qty': l.product_qty,
+                            'product_uom_id':l.product_uom.id,
+                            'bom_id':BoM,
+                            'date_planned_start':datetime.now(),
+                            'user_id': i.env.user.id,
+                            'company_id': company.id,
+                            'purchase_id':i.id,
+                            })
+                        if mp:
+                            mrp.append(mp.id)
+                            for j in i.order_line:
+                                mo_line.append((0,0, {
+                                    'product_id': j.product_id.id,
+                                    # 'location_dest_id': False,
+                                    'product_uom_qty': j.product_qty,
+                                    'product_uom': j.product_id.uom_id.id,
+                                }))
+                            mp.update({'move_byproduct_ids':mo_line})
+                i.write({'mrp_ids' : [(6,0,mrp)]})
+                return i.show_mrp_prod()
+
     def create_mrp_production(self):
         mrp = []
         BoM = False
