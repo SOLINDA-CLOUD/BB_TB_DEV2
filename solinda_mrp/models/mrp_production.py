@@ -3,13 +3,8 @@ from odoo import api, fields, models
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    trans_date = fields.Datetime(
-        string='Transaction Date',
-        default=fields.Datetime.now,
-        index=True,
-        required=True,
-        readonly=True,
-        )
+
+    trans_date = fields.Datetime(string='Transaction Date',default=fields.Datetime.now(),required=True,readonly=True,)
 
     @api.model
     def create(self, vals):
@@ -22,3 +17,4 @@ class MrpProduction(models.Model):
     po_no = fields.Char(string='PO No.')
     purchase_id = fields.Many2one('purchase.order', string='Purchase')
     product_tmpl_id = fields.Many2one('product.template', string='Parent Product',related="product_id.product_tmpl_id")
+

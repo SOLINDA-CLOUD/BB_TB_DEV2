@@ -27,7 +27,6 @@
                     <header>
                         <button string="Create MO" name="break_down_to_mo" type="object" class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,progress,done"/>
-
                     </header>
                     <sheet>
                         <group col="4">

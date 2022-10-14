@@ -26,6 +26,7 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         res["res_id"] = self.id
         return res
 
+
     def _prepare_lines(self):
         """Get the components (product_lines) needed for manufacturing the
         given a BoM.
@@ -35,9 +36,7 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         factor = self.mrp_production_request_id.product_uom_id._compute_quantity(
             self.pending_qty, bom_point.product_uom_id
         )
-        return bom_point.explode(
-            self.mrp_production_request_id.product_id, factor / bom_point.product_qty
-        )
+        return bom_point.explode(self.mrp_production_request_id.product_id, factor / bom_point.product_qty)
 
     def _get_mo_qty(self):
         """Propose a qty to create a MO available to produce."""
