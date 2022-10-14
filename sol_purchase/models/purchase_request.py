@@ -19,9 +19,7 @@ class CustomPattern(models.Model):
     print_color_id = fields.Many2one('product.template.attribute.value', string='Print/Color')
     model_ptr = fields.Many2one('product.category', string='Model')
     size = fields.Many2one('product.template.attribute.value', string='Size')
-    pattern_marker = fields.Char('Pattern Marker')
-    size_approve = fields.Char('Size Approve')
-    fabric = fields.Many2one('data.fabric.lining', string='Fabric')
+    
 
 class LabelHardware(models.Model):
     _name = 'label.hardware'
@@ -114,6 +112,9 @@ class PurchaseRequest(models.Model):
     purchase_revision_id = fields.Many2one('purchase.request', string='Pattern Alteration')
     pattern_count = fields.Integer(string='Pattern', compute='_find_len')
     test = fields.Boolean(string="Test", default=False)
+    pattern_marker = fields.Char('Pattern Marker')
+    size_approve = fields.Char('Size Approve')
+    fabric = fields.Many2one('data.fabric.lining', string='Fabric')
     sample_size = fields.Float('Sample Size')
     fabric_width = fields.Char('Fabric Width')
     pattern_time = fields.Float('Pattern Time')
