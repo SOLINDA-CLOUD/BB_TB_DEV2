@@ -138,21 +138,33 @@
               </tr>
             </tbody>
           </table>
-          <table style="border-collapse: collapse; width: 100%; height: 36px;" border="0">
-            <tbody>
+         <table style="border-collapse: collapse; width: 100%; height: 36px;" border="0">
+          <tbody>
               <tr style="height: 36px;">
-                <td style="width: 50.5457%; height: 36px;"></td>
-                <td style="width: 49.4543%; height: 36px;"><br/><img style="max-height: 420px; max-width: 425px;"/></td>
+                  <td style="width: 50.5457%; height: 36px;"></td>
+                  <td style="width: 49.4543%; height: 36px;"><br/><img style="max-height: 420px; max-width: 425px;"/></td>
               </tr>
               <tr>
-                <td style="width: 50.5457%;"></td>
-                <td style="width: 49.4543%;"></td>
+                  <td style="width: 50.5457%;"></td>
+                  <td style="width: 49.4543%;"></td>
               </tr>
               <tr>
-                <td style="width: 50.5457%;"></td>
-                <td style="width: 49.4543%;"></td>
+                  <td style="width: 50.5457%;">
+                      <p></p>
+                      <p></p>
+                      <p></p>
+                      <p></p>
+                      <p></p>
+                  </td>
+                  <td style="width: 49.4543%;"></td>
               </tr>
-            </tbody>
+              <tr>
+                  <td style="width: 50.5457%;">
+                      <strong>Pattern Maker To Fill Out :</strong>
+                  </td>
+                  <td style="width: 49.4543%;"></td>
+              </tr>
+          </tbody>
           </table>
           <table style="table-layout: fixed; border-collapse: collapse; width: 100%; height: 49px;">
             <tbody style="font-size: 15px;">
