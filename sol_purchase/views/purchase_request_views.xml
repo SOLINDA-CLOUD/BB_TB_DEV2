@@ -108,6 +108,17 @@
               </form>
             </field>
             <group >
+              <group>
+                <field name="sample_size" />
+                <field name="fabric_width" />
+                <field name="pattern_time" widget="float_time"/>
+              </group>
+              <group>
+                <field name="consumption" />
+                <field name="pattern_cost" />
+              </group>
+            </group>
+            <group >
               <group string="ALTERATION COMMENT">
                 <field name="alt_cmnt" nolabel="1" placeholder="Comments ....." />
               </group>

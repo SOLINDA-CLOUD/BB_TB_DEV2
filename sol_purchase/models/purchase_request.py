@@ -114,6 +114,11 @@ class PurchaseRequest(models.Model):
     purchase_revision_id = fields.Many2one('purchase.request', string='Pattern Alteration')
     pattern_count = fields.Integer(string='Pattern', compute='_find_len')
     test = fields.Boolean(string="Test", default=False)
+    sample_size = fields.Float('Sample Size')
+    fabric_width = fields.Char('Fabric Width')
+    pattern_time = fields.Float('Pattern Time')
+    consumption = fields.Char('Consumption')
+    pattern_cost = fields.Float('Pattern Cost')
 
     ### PENDING ORDER ###
     status_of_sample = fields.Char(string='Status of Sample')
