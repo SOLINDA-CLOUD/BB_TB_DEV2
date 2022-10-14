@@ -63,9 +63,11 @@
                   <td style="width: 32.9372%; height: 21px;">
                     <span t-field="line.product_id.categ_id"/>
                   </td>
+                </tr>
               </t>
 
-              <t t-foreach="doc.purchase_custom_ids" t-as="custom">  
+              <t t-foreach="doc.purchase_custom_ids" t-as="custom">
+                <tr>  
                   <td style="width: 1.36426%; height: 21px;"></td>
                   <td style="width: 20.4689%; height: 21px;">Size</td>
                   <td style="width: 1.36426%; height: 21px;">:</td>
