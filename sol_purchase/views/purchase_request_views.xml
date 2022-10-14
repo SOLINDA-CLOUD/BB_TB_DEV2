@@ -90,7 +90,7 @@
             <group >
               <group>
                 <field name="pattern_marker" />
-                <field name="size" />
+                <field name="size_approve" />
                 <field name="fabric" />
               </group>
               <group>
