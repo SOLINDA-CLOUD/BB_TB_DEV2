@@ -9,16 +9,22 @@
       <field name="inherit_id" ref="purchase.purchase_order_form" />
       <field name="arch" type="xml">
 
+        <xpath expr="//div[@name='button_box']/button[@name='action_view_invoice']" position="after">
+          <button type="object" name="show_mrp_prod" class="oe_stat_button" icon="fa-solid fa-wrench" attrs="{'invisible':[('mrp_count', '=', 0)]}">
+            <field name="mrp_count" widget="statinfo" string="Manufacturing"/>
+            <field name="mrp_ids" invisible="1"/>
+          </button>
+        </xpath>
+
         <xpath expr="//header" position="inside">
-          <button string="Create Breakdown" name="create_mrp_breakdown" type="object" class="oe_highlight"/>
-          <button string="Create MO" name="create_mrp_production" type="object" class="oe_highlight"/>
-          <button string="Create MO 2" name="create_mo_production" type="object" class="oe_highlight"/>
-          <button string="Show MO" name="show_mrp_prod" type="object" class="oe_highlight"/>
+          <button string="Create Manufacturing" name="create_mo_production" type="object" class="oe_highlight"/>
         </xpath>
+
         <xpath expr="//field[@name='currency_id']" position="after">
-          <field name="breakdown_id"/>
+          <field name="breakdown_id" invisible="1"/>
         </xpath>
-        <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
+
+        <!-- <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
           <page name="mo_detail" string="MO Detail">
             <field name="temp_prodmo_ids">
               <tree >
@@ -28,15 +34,10 @@
               </tree>
             </field>
           </page>
-        </xpath>
-        <!-- <xpath expr="//field[@name='order_line']/tree" position="inside">
-                <field name="purchase_request_lines" invisible="1" />
-                <button attrs="{'invisible': [('purchase_request_lines', '=', [])]}" name="action_open_request_line_tree_view" type="object" icon="fa-folder-open-o" />
-            </xpath> -->
+        </xpath> -->
+
       </field>
     </record>
 
   </data>
-
-
 </odoo>

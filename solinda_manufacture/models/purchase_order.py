@@ -45,9 +45,23 @@ class PurchaseOrder(models.Model):
             'context': {'create': False}
         }
 
+    def get_location(self,product):
+        location_by_company = self.env['stock.location'].read_group([
+            ('company_id', 'in', self.company_id.ids),
+            ('usage', '=', 'production')
+        ], ['company_id', 'ids:array_agg(id)'], ['company_id'])
+        location_by_company = {lbc['company_id'][0]: lbc['ids'] for lbc in location_by_company}
+        if product:
+            location = product.with_company(self.company_id).property_stock_production
+        else:
+            location = location_by_company.get(self.company_id.id)[0]
+        return location
+
+
     def create_mo_production(self):
         mrp,mo_line = [],[]
-        BoM = False
+        BoM,location = False
+        
         self = self.sudo()
         for i in self:
             if i.mrp_count > 0:
@@ -62,11 +76,14 @@ class PurchaseOrder(models.Model):
                 #     return
                 # else:
                 #     return
-                
                 for l in header_product:
                     if l.product_id:
+                        location = i.get_location(l.product_id)
                         if l.product_id.bom_count > 0:
-                            BoM = self.env["mrp.bom"].search([('product_id', '=', l.product_id.id)],order = 'retail_price desc',limit=1).id
+                            # BoM = self.env["mrp.bom"].search([('product_id', '=', l.product_id.id)],order = 'retail_price desc',limit=1).id
+                            BoM = self.env["mrp.bom"].search([('is_final', '=', True)]).id
+                            if not BoM:
+                                raise ValidationError("BoM final is not defined.\nPlease choose the final BoM first!")
                         mp = self.env["mrp.production"].create({
                             'name': _('New'),
                             'product_id': l.product_id.id,
@@ -77,17 +94,19 @@ class PurchaseOrder(models.Model):
                             'user_id': i.env.user.id,
                             'company_id': company.id,
                             'purchase_id':i.id,
+                            'production_location_id':location
                             })
                         if mp:
                             mrp.append(mp.id)
                             for j in i.order_line:
-                                mo_line.append((0,0, {
-                                    'name': _('New'),
-                                    'product_id': j.product_id.id,
-                                    # 'location_dest_id': False,
-                                    'product_uom_qty': j.product_qty,
-                                    'product_uom': j.product_id.uom_id.id,
-                                }))
+                                if j.product_id:
+                                    mo_line.append((0,0, {
+                                        'name': _('New'),
+                                        'product_id': j.product_id.id,
+                                        'location_dest_id': mp.production_location_id.id,
+                                        'product_uom_qty': j.product_qty,
+                                        'product_uom': j.product_id.uom_id.id,
+                                    }))
                             mp.update({'move_byproduct_ids':mo_line})
                 i.write({'mrp_ids' : [(6,0,mrp)]})
                 return i.show_mrp_prod()

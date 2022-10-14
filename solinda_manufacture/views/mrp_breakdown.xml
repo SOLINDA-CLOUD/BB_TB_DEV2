@@ -96,7 +96,7 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="mrp_breakdown_menu" name="Manufacturing Details" action="mrp_breakdown_action" parent="mrp.menu_mrp_manufacturing" sequence="0"/>
+        <menuitem id="mrp_breakdown_menu" name="Manufacturing Details" action="mrp_breakdown_action" parent="mrp.menu_mrp_manufacturing" sequence="0" active="0"/>
 
     </data>
 </odoo>
