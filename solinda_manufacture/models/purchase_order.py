@@ -15,8 +15,9 @@ class PurchaseOrder(models.Model):
 
     temp_prodmo_ids = fields.One2many('temp.product.mo', 'purchase_id', string='Temp Product MO')
     breakdown_id = fields.Many2one('mrp.breakdown', string='Breakdown')
+    mrp_id = fields.Many2one('mrp.production', string='MO')
     mrp_ids = fields.Many2many('mrp.production', string='MO')
-    mrp_count = fields.Integer('Mrp Count')
+    mrp_count = fields.Integer('Mrp Count',compute="_compute_mrp_count")
 
     @api.depends('mrp_ids')
     def _compute_mrp_count(self):
@@ -37,15 +38,17 @@ class PurchaseOrder(models.Model):
     def show_mrp_prod(self):
         return {
             'name': _("Manufacturing Order"),
-            'view_mode': 'tree,form',
+            'view_mode': 'form',
             'res_model': 'mrp.production',
             'type': 'ir.actions.act_window',
             'target': 'current',
+            'res_id':self.mrp_id.id,
             'domain': [('id', 'in', self.mrp_ids.ids)],
             'context': {'create': False}
         }
 
     def get_location(self,product):
+        self = self.sudo()
         location_by_company = self.env['stock.location'].read_group([
             ('company_id', 'in', self.company_id.ids),
             ('usage', '=', 'production')
@@ -59,8 +62,8 @@ class PurchaseOrder(models.Model):
 
 
     def create_mo_production(self):
-        mrp,mo_line = [],[]
-        BoM,location = False
+        mrp,mo_line,by_prod_temp = [],[],[]
+        BoM,location = False,False
         
         self = self.sudo()
         for i in self:
@@ -78,6 +81,10 @@ class PurchaseOrder(models.Model):
                 #     return
                 for l in header_product:
                     if l.product_id:
+                        by_prod_temp.append((0,0, {
+                            'product_id': l.product_id.id,
+                            'product_uom_qty': l.product_qty,
+                        }))           
                         location = i.get_location(l.product_id)
                         if l.product_id.bom_count > 0:
                             # BoM = self.env["mrp.bom"].search([('product_id', '=', l.product_id.id)],order = 'retail_price desc',limit=1).id
@@ -94,7 +101,7 @@ class PurchaseOrder(models.Model):
                             'user_id': i.env.user.id,
                             'company_id': company.id,
                             'purchase_id':i.id,
-                            'production_location_id':location
+                            'production_location_id':location.id
                             })
                         if mp:
                             mrp.append(mp.id)
@@ -103,12 +110,14 @@ class PurchaseOrder(models.Model):
                                     mo_line.append((0,0, {
                                         'name': _('New'),
                                         'product_id': j.product_id.id,
-                                        'location_dest_id': mp.production_location_id.id,
+                                        'location_dest_id': mp.location_src_id.id,
+                                        'location_id': location.id,
                                         'product_uom_qty': j.product_qty,
                                         'product_uom': j.product_id.uom_id.id,
                                     }))
                             mp.update({'move_byproduct_ids':mo_line})
-                i.write({'mrp_ids' : [(6,0,mrp)]})
+                            
+                i.write({'mrp_ids' : [(6,0,mrp)],'mrp_id':mp.id,'by_product_ids':by_prod_temp})
                 return i.show_mrp_prod()
 
     def create_mrp_production(self):

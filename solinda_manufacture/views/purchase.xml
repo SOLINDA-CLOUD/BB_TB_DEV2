@@ -11,30 +11,19 @@
 
         <xpath expr="//div[@name='button_box']/button[@name='action_view_invoice']" position="after">
           <button type="object" name="show_mrp_prod" class="oe_stat_button" icon="fa-solid fa-wrench" attrs="{'invisible':[('mrp_count', '=', 0)]}">
-            <field name="mrp_count" widget="statinfo" string="Manufacturing"/>
+            <field name="mrp_count" widget="statinfo" string="Manufacture"/>
             <field name="mrp_ids" invisible="1"/>
           </button>
         </xpath>
 
         <xpath expr="//header" position="inside">
-          <button string="Create Manufacturing" name="create_mo_production" type="object" class="oe_highlight"/>
+          <button string="Create Manufacturing" name="create_mo_production" groups="solinda_manufacture.group_potomo_access" type="object" class="oe_highlight"/>
         </xpath>
 
         <xpath expr="//field[@name='currency_id']" position="after">
           <field name="breakdown_id" invisible="1"/>
         </xpath>
 
-        <!-- <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
-          <page name="mo_detail" string="MO Detail">
-            <field name="temp_prodmo_ids">
-              <tree >
-                <field name="product_tmpl_id" />
-                <field name="product_qty" />
-                <field name="purchase_id" />
-              </tree>
-            </field>
-          </page>
-        </xpath> -->
 
       </field>
     </record>
