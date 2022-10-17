@@ -38,7 +38,10 @@ class PurchaseOrderLine(models.Model):
   image = fields.Image(string='Image')
   fabric_po = fields.Many2one('data.fabric.lining', string='Fabric')
   lining_po = fields.Many2one('data.fabric.lining', string='Lining')
-  color = fields.Many2many('product.template.attribute.value', string="Size and Color")
+  
+  color = fields.Many2many('product.template.attribute.value', string="Color")
+  size = fields.Many2one('product.template.attribute.value', string="Size")
+
   label = fields.Many2one(comodel_name='label.comp', string='Label')
   prod_comm = fields.Html(string='Production Comment')
 
