@@ -17,4 +17,6 @@ class MrpProduction(models.Model):
     po_no = fields.Char(string='PO No.')
     purchase_id = fields.Many2one('purchase.order', string='Purchase')
     product_tmpl_id = fields.Many2one('product.template', string='Parent Product',related="product_id.product_tmpl_id")
+    move_byproduct_ids = fields.One2many('stock.move')
+    # move_byproduct_ids = fields.One2many('stock.move', compute='_compute_move_byproduct_ids', inverse='_set_move_byproduct_ids')
 
