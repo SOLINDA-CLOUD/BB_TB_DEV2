@@ -136,6 +136,7 @@ class PurchaseOrder(models.Model):
                 # 'move_finished_ids':mo_line,
                 mp.update({'move_byproduct_ids':mo_line,'by_product_ids':by_prod_temp})
                 mp._onchange_workorder_ids()
+                mp._onchange_bom_id()
                             
                 i.write({'mrp_ids' : [(6,0,mrp)],'mrp_id':mp.id})
                 return i.show_mrp_prod()
