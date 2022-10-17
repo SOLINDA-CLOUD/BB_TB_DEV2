@@ -117,6 +117,8 @@ class PurchaseOrder(models.Model):
                             'company_id': company.id,
                             'purchase_id':i.id,
                             'picking_type_id':BoM.picking_type_id.id,
+                            'location_src_id':BoM.picking_type_id.default_location_src_id.id,
+                            'location_dest_id':BoM.picking_type_id.default_location_dest_id.id,
                             'production_location_id':location.id
                             })
                         if mp:
