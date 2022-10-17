@@ -82,13 +82,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 9.51851%;">Sub Suppl.</td>
+                        <td style="width: 9.51851%;">Sub Supplier</td>
                         <td style="width: 1.97972%;">:</td>
                         <td style="width: 38.1214%;">
                           <span t-field="doc.sub_suplier"/>
                         </td>
+                        <td style="width: 8.52077%;"></td>
                         <td style="width: 7.85545%;">Delivery Date</td>
-                        <td style="width: 1.97975%;">:</td>
+                        <td style="width: 2.08768%;">:</td>
                         <td style="width: 32.0241%;">
                           <t t-esc="doc.ordering_date"/> - <t t-esc="doc.delivery_date"/>
                         </td>
