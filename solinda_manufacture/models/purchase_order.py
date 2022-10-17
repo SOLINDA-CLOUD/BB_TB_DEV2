@@ -74,17 +74,21 @@ class PurchaseOrder(models.Model):
                 if not company:
                     raise ValidationError("Company for manufacture is not defined")
                 header_product = i.order_line.filtered(lambda x: x.product_id.detailed_type in ['consu','product'])[0]
+                prodpo_line = i.order_line.filtered(lambda x: x.product_id.detailed_type in ['consu','product'])
                 prod_template = i.order_line.mapped('product_id.product_tmpl_id.id')
                 # if len(prod_template) > 1:
                 #     return
                 # else:
                 #     return
+                for o in prodpo_line:
+                    by_prod_temp.append((0,0, {
+                            'product_id': o.product_id.id,
+                            'product_uom_qty': o.product_qty,
+                    })) 
+
                 for l in header_product:
                     if l.product_id:
-                        by_prod_temp.append((0,0, {
-                            'product_id': l.product_id.id,
-                            'product_uom_qty': l.product_qty,
-                        }))           
+                                  
                         location = i.get_location(l.product_id)
                         if l.product_id.bom_count > 0:
                             # BoM = self.env["mrp.bom"].search([('product_id', '=', l.product_id.id)],order = 'retail_price desc',limit=1).id

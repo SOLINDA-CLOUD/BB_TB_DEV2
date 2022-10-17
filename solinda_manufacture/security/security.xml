@@ -20,5 +20,10 @@
             <field name="groups" eval="[(4, ref('solinda_manufacture.group_potomo_access'))]"/>
         </record>
 
+        <!-- Record rule multi company di mrp prod dan mrp prod line harus dimatikan -->
+        <!-- stock_picking multi-company  -->
+        <!-- Stock Operation Type multi-company -->
+        <!-- stock_move multi-company -->
+
     </data>
 </odoo>

@@ -39,6 +39,7 @@ class MrpWorkorder(models.Model):
             } 
 
     def create_po(self):
+        self = self.sudo()
         for i in self:
             raw_po_line = []
             i.button_start()
