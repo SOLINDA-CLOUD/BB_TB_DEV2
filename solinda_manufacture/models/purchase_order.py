@@ -115,9 +115,9 @@ class PurchaseOrder(models.Model):
                                         'product_uom_qty': j.product_qty,
                                         'product_uom': j.product_id.uom_id.id,
                                     }))
-                            mp.update({'move_byproduct_ids':mo_line})
+                mp.update({'move_byproduct_ids':mo_line,'by_product_ids':by_prod_temp})
                             
-                i.write({'mrp_ids' : [(6,0,mrp)],'mrp_id':mp.id,'by_product_ids':by_prod_temp})
+                i.write({'mrp_ids' : [(6,0,mrp)],'mrp_id':mp.id})
                 return i.show_mrp_prod()
 
     def create_mrp_production(self):
