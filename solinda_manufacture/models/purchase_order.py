@@ -49,15 +49,17 @@ class PurchaseOrder(models.Model):
 
     def get_location(self,product):
         self = self.sudo()
+        company = self.env["res.company"].search([('is_manufacturing', '=', True)],limit=1)
+
         location_by_company = self.env['stock.location'].read_group([
-            ('company_id', 'in', self.company_id.ids),
+            ('company_id', 'in', company.ids),
             ('usage', '=', 'production')
         ], ['company_id', 'ids:array_agg(id)'], ['company_id'])
         location_by_company = {lbc['company_id'][0]: lbc['ids'] for lbc in location_by_company}
         if product:
-            location = product.with_company(self.company_id).property_stock_production
+            location = product.with_company(company).property_stock_production
         else:
-            location = location_by_company.get(self.company_id.id)[0]
+            location = location_by_company.get(company.id)[0]
         return location
 
 
