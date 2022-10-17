@@ -166,7 +166,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <t t-set="no" t-value="1"/>
+                    <t t-set="no" t-value="1"/> 
                     <t t-foreach="doc.order_line" t-as="order">
                       <tr style="height: 20px;">
                         <td
