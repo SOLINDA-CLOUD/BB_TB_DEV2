@@ -46,6 +46,15 @@ class PurchaseOrder(models.Model):
             'domain': [('id', 'in', self.mrp_ids.ids)],
             'context': {'create': False}
         }
+    
+    @api.model
+    def _get_default_picking_type(self):
+        company = self.env["res.company"].search([('is_manufacturing', '=', True)],limit=1)
+        company_id = self.env.context.get('default_company_id', company.id)
+        return self.env['stock.picking.type'].search([
+            ('code', '=', 'mrp_operation'),
+            ('warehouse_id.company_id', '=', company_id),
+        ], limit=1).id
 
     def get_location(self,product):
         self = self.sudo()
@@ -56,10 +65,10 @@ class PurchaseOrder(models.Model):
             ('usage', '=', 'production')
         ], ['company_id', 'ids:array_agg(id)'], ['company_id'])
         location_by_company = {lbc['company_id'][0]: lbc['ids'] for lbc in location_by_company}
-        # if product:
-        #     location = product.with_company(company).property_stock_production
-        # else:
-        location = location_by_company.get(company.id)[0]
+        if product:
+            location = product.with_company(company).property_stock_production
+        else:
+            location = location_by_company.get(company.id)[0]
         return location
 
 
@@ -108,7 +117,7 @@ class PurchaseOrder(models.Model):
                             'company_id': company.id,
                             'purchase_id':i.id,
                             # 'picking_type_id':i.id,
-                            'production_location_id':location
+                            'production_location_id':location.id
                             })
                         if mp:
                             mrp.append(mp.id)
@@ -118,7 +127,7 @@ class PurchaseOrder(models.Model):
                                         'name': _('New'),
                                         'product_id': j.product_id.id,
                                         'location_dest_id': mp.location_src_id.id,
-                                        'location_id': location,
+                                        'location_id': location.id,
                                         'product_uom_qty': j.product_qty,
                                         'product_uom': j.product_id.uom_id.id,
                                     }))
