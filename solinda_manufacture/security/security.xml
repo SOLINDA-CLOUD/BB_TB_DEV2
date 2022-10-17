@@ -24,6 +24,9 @@
         <!-- stock_picking multi-company  -->
         <!-- Stock Operation Type multi-company -->
         <!-- stock_move multi-company -->
+        <!-- Location multi-company -->
+        <!-- stock_move_line multi-company -->
+        <!-- Location multi-company -->
 
     </data>
 </odoo>

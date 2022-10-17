@@ -15,8 +15,8 @@ class PurchaseOrder(models.Model):
 
     temp_prodmo_ids = fields.One2many('temp.product.mo', 'purchase_id', string='Temp Product MO')
     breakdown_id = fields.Many2one('mrp.breakdown', string='Breakdown')
-    mrp_id = fields.Many2one('mrp.production', string='MO')
-    mrp_ids = fields.Many2many('mrp.production', string='MO')
+    mrp_id = fields.Many2one('mrp.production', string='MO',copy=False)
+    mrp_ids = fields.Many2many('mrp.production', string='MO',copy=False)
     mrp_count = fields.Integer('Mrp Count',compute="_compute_mrp_count")
 
     @api.depends('mrp_ids')
