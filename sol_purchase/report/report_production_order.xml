@@ -166,8 +166,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr style="height: 20px;">
-                      <t t-foreach="doc.order_line" t-as="order">
+                    
+                    <t t-foreach="doc.order_line" t-as="order">
+                      <tr style="height: 20px;">
                         <td
                             style="width: 10.8264%; height: 20px; border: 1px solid black; padding-left: 5px;">
                               <span t-field="order.product_id.name"/>
@@ -204,8 +205,9 @@
                             style="width: 13.9312%; border: 1px solid black; padding-right: 3px; text-align: left;">
                               <t t-esc="order.prod_comm"/>
                             </td>
-                      </t>
-                    </tr>
+                      </tr>
+                      <t t-set="no" t-value="no + 1"/>
+                    </t>
                 </tbody>
             </table>
 
