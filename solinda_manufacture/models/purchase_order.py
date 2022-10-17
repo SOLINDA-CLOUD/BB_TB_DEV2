@@ -108,7 +108,7 @@ class PurchaseOrder(models.Model):
                             'company_id': company.id,
                             'purchase_id':i.id,
                             # 'picking_type_id':i.id,
-                            'production_location_id':location.id
+                            'production_location_id':location
                             })
                         if mp:
                             mrp.append(mp.id)
@@ -118,7 +118,7 @@ class PurchaseOrder(models.Model):
                                         'name': _('New'),
                                         'product_id': j.product_id.id,
                                         'location_dest_id': mp.location_src_id.id,
-                                        'location_id': location.id,
+                                        'location_id': location,
                                         'product_uom_qty': j.product_qty,
                                         'product_uom': j.product_id.uom_id.id,
                                     }))
