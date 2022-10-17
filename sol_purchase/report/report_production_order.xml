@@ -90,7 +90,7 @@
                         <td style="width: 7.85545%;">Delivery Date</td>
                         <td style="width: 1.97975%;">:</td>
                         <td style="width: 32.0241%;">
-                          <t t-esc="doc.ordering_data"/> - <t t-esc="doc.delivery_date"/>
+                          <t t-esc="doc.ordering_date"/> - <t t-esc="doc.delivery_date"/>
                         </td>
                     </tr>
                     <tr>
