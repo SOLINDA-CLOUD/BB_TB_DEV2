@@ -56,10 +56,10 @@ class PurchaseOrder(models.Model):
             ('usage', '=', 'production')
         ], ['company_id', 'ids:array_agg(id)'], ['company_id'])
         location_by_company = {lbc['company_id'][0]: lbc['ids'] for lbc in location_by_company}
-        if product:
-            location = product.with_company(company).property_stock_production
-        else:
-            location = location_by_company.get(company.id)[0]
+        # if product:
+        #     location = product.with_company(company).property_stock_production
+        # else:
+        location = location_by_company.get(company.id)[0]
         return location
 
 
@@ -107,6 +107,7 @@ class PurchaseOrder(models.Model):
                             'user_id': i.env.user.id,
                             'company_id': company.id,
                             'purchase_id':i.id,
+                            # 'picking_type_id':i.id,
                             'production_location_id':location.id
                             })
                         if mp:
