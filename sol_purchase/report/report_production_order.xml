@@ -212,9 +212,8 @@
                             style="width: 13.9312%; border: 1px solid black; padding-right: 3px; text-align: left;">
                               <t t-esc="order.prod_comm"/>
                             </td>
-                        <t t-value="no + 1"/>
                       </tr>
-                      
+                      <t t-value="no + 1"/>
                       <tr>
                         <td
                             style="width: 10.8264%; border: 1px solid black; padding-left: 5px; border-right: 1px solid transparent;"><strong>TOTAL</strong></td>
