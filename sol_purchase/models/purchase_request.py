@@ -78,6 +78,7 @@ class PurchaseRequestLine(models.Model):
     fabric = fields.Many2one('data.fabric.lining', string='Fabric', ondelete='cascade')
     lining= fields.Many2one('data.fabric.lining', string='Lining', ondelete='cascade')
     view_story = fields.Many2one(string='Story', related='request_id.story_id', readonly=True)
+    color = fields.Many2many('product.template.attribute.value', string="Size and Color")
     colour = fields.Char('Color',compute="_onchange_color_size")
     size = fields.Char('Size',compute="_onchange_color_size")
 
