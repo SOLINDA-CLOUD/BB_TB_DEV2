@@ -78,6 +78,31 @@ class PurchaseRequestLine(models.Model):
     fabric = fields.Many2one('data.fabric.lining', string='Fabric', ondelete='cascade')
     lining= fields.Many2one('data.fabric.lining', string='Lining', ondelete='cascade')
     view_story = fields.Many2one(string='Story', related='request_id.story_id', readonly=True)
+    color = fields.Many2many('product.template.attribute.value', string="Size and Color")
+    colour = fields.Char('Color',compute="_onchange_color_size")
+    size = fields.Char('Size',compute="_onchange_color_size")
+
+    @api.depends('product_id')
+    def _onchange_color_size(self):
+        for i in self:
+            c,s = '',''
+            if i.product_id.product_template_variant_value_ids:
+                i.color = i.product_id.product_template_variant_value_ids
+                list_size = ['SIZE:','SIZES:','UKURAN:']
+                list_color = ['COLOR:','COLOUR:','COLOURS:','COLORS:','WARNA:','CORAK:']
+                for v in i.product_id.product_template_variant_value_ids:
+                    if any(v.display_name.upper().startswith(word) for word in list_color):
+                        c += '('+v.name+')'
+                    elif any(v.display_name.upper().startswith(word) for word in list_size):
+                        s += '('+v.name+')'
+                    else:
+                        c += ''
+                        s += ''
+            else:
+                c = ''
+                s = ''
+            i.colour = c
+            i.size = s
 
     @api.onchange('product_id')
     def _onchange_image(self):
@@ -114,8 +139,7 @@ class PurchaseRequest(models.Model):
     test = fields.Boolean(string="Test", default=False)
     pattern_marker = fields.Char('Pattern Marker')
     size_approve = fields.Char('Size Approve')
-    fabric = fields.Many2one('data.fabric.lining', string='Fabric')
-    sample_size = fields.Float('Sample Size')
+    sample_size = fields.Char('Sample Size')
     fabric_width = fields.Char('Fabric Width')
     pattern_time = fields.Float('Pattern Time')
     consumption = fields.Char('Consumption')

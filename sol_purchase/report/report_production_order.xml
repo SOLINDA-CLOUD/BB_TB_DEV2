@@ -126,37 +126,40 @@
                 border="1">
                 <thead>
                     <tr style="height: 20px;">
-                      
                         <td
                             style="width: 10.8264%; text-align: center; height: 20px; border: 1px solid black; padding-top: 7px;">
                             <strong>Style Name</strong>
                         </td>
                         <td
-                            style="width: 10.5594%; text-align: center; height: 20px; border: 1px solid black; padding-top: 7px;">
+                            style="width: 8.26295%; text-align: center; height: 20px; border: 1px solid black; padding-top: 7px;">
                             <strong>Fabric</strong>
                         </td>
                         <td
-                            style="width: 9.12716%; text-align: center; height: 20px; border: 1px solid black; padding-top: 7px;">
+                            style="width: 8.91838%; text-align: center; height: 20px; border: 1px solid black; padding-top: 7px;">
                             <strong>Lining</strong>
                         </td>
                         <td
-                            style="width: 10.8264%; text-align: center; height: 20px; border: 1px solid black; padding-top: 7px;">
-                            <strong>Size and Color</strong>
+                            style="width: 7.91842%; text-align: center; height: 20px; border: 1px solid black; padding-top: 7px;">
+                            <strong>Color</strong>
                         </td>
                         <td
-                            style="width: 11.9989%; text-align: center; height: 20px; border: 1px solid black; padding-top: 7px;">
+                            style="width: 5.4132%; text-align: center; border: 1px solid black; padding-top: 7px;">
+                            <strong>Size</strong>
+                        </td>
+                        <td
+                            style="width: 8.86738%; text-align: center; height: 20px; border: 1px solid black; padding-top: 7px;">
                             <strong>Label</strong>
                         </td>
                         <td
-                            style="width: 7.64382%; text-align: center; height: 20px; border: 1px solid black; padding-top: 7px;">
+                            style="width: 6.18249%; text-align: center; height: 20px; border: 1px solid black; padding-top: 7px;">
                             <strong>Total Qty</strong>
                         </td>
                         <td
-                            style="width: 9.03344%; text-align: center; border: 1px solid black; padding-top: 7px;">
+                            style="width: 9.86852%; text-align: center; border: 1px solid black; padding-top: 7px;">
                             <strong>Cost Price</strong>
                         </td>
                         <td
-                            style="width: 7.24618%; text-align: center; border: 1px solid black; padding-top: 7px;">
+                            style="width: 11.004%; text-align: center; border: 1px solid black; padding-top: 7px;">
                             <strong>Total</strong>
                         </td>
                         <td
@@ -166,39 +169,43 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <t t-set="no" t-value="1"/> 
-                    <t t-foreach="doc.order_line" t-as="order">
+                    <t t-set="no" t-value="1"/>
+                    <t t-foreach="doc.order_line" t-as="order"> 
                       <tr style="height: 20px;">
                         <td
                             style="width: 10.8264%; height: 20px; border: 1px solid black; padding-left: 5px;">
-                              <span t-field="order.product_id.name"/>
+                              <t t-esc="order.product_id.name"/>
                             </td>
                         <td
-                            style="width: 10.5594%; height: 20px; border: 1px solid black; text-align: left;">
+                            style="width: 8.26295%; height: 20px; border: 1px solid black; text-align: left;">
                               <span t-field="order.fabric_po"/>
                             </td>
                         <td
-                            style="width: 9.12716%; height: 20px; border: 1px solid black; padding-right: 3px; text-align: left;">
+                            style="width: 8.91838%; height: 20px; border: 1px solid black; padding-right: 3px; text-align: left;">
                               <span t-field="order.lining_po"/>
                             </td>
                         <td
-                            style="width: 10.8264%; height: 20px; text-align: center; border: 1px solid black; padding-right: 3px;">
-                              <span t-field="order.color"/>
+                            style="width: 7.91842%; height: 20px; text-align: center; border: 1px solid black; padding-right: 3px;">
+                              <t t-esc="order.colour"/>
                             </td>
                         <td
-                            style="width: 11.9989%; height: 20px; border: 1px solid black; padding-right: 3px; text-align: left;">
+                            style="width: 5.4132%; text-align: center; border: 1px solid black; padding-right: 3px;">
+                              <t t-esc="order.size"/>
+                            </td>
+                        <td
+                            style="width: 8.86738%; height: 20px; border: 1px solid black; padding-right: 3px; text-align: left;">
                               <span t-field="order.label"/>
                             </td>
                         <td
-                            style="width: 7.64382%; height: 20px; text-align: right; border: 1px solid black; padding-right: 3px;">
+                            style="width: 6.18249%; height: 20px; text-align: right; border: 1px solid black; padding-right: 3px;">
                               <t t-esc="order.product_qty"/>
                             </td>
                         <td
-                            style="width: 9.03344%; border: 1px solid black; padding-right: 3px; text-align: right;">
+                            style="width: 9.86852%; border: 1px solid black; padding-right: 3px; text-align: right;">
                               <t t-esc="order.price_unit" t-options="{'widget': 'monetary','display_currency': res_company.currency_id}"/>
                             </td>
                         <td
-                            style="width: 7.24618%; border: 1px solid black; padding-right: 3px; text-align: right;">
+                            style="width: 11.004%; border: 1px solid black; padding-right: 3px; text-align: right;">
                               <t t-esc="order.price_subtotal" t-options="{'widget': 'monetary','display_currency': res_company.currency_id}"/>
                             </td>
                         <td
@@ -210,7 +217,39 @@
                     </t>
                 </tbody>
             </table>
-
+            <table
+                style="table-layout: fixed; border-collapse: collapse; width: 99.9452%; margin-top: 20px; height: 20px;"
+                border="1">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td
+                            style="width: 10.8264%; border: 1px solid black; padding-left: 5px; border-right: 1px solid transparent;">
+                            <strong>TOTAL</strong>
+                        </td>
+                        <td
+                            style="width: 8.26295%; border: 1px solid black; text-align: left; border-right: 1px solid transparent;"></td>
+                        <td
+                            style="width: 8.91838%; border: 1px solid black; padding-right: 3px; text-align: left; border-right: 1px solid transparent;"></td>
+                        <td
+                            style="width: 7.91842%; text-align: center; border: 1px solid black; padding-right: 3px; border-right: 1px solid transparent;"></td>
+                        <td
+                            style="width: 5.4132%; text-align: center; border: 1px solid black; padding-right: 3px; border-right: 1px solid transparent;"></td>
+                        <td
+                            style="width: 8.86738%; border: 1px solid black; padding-right: 3px; text-align: left; border-right: 1px solid transparent;"></td>
+                        <td
+                            style="width: 6.18249%; text-align: right; border: 1px solid black; padding-right: 3px; border-right: 1px solid transparent;"></td>
+                        <td
+                            style="width: 9.86852%; border: 1px solid black; padding-right: 3px; text-align: right;"></td>
+                        <td
+                            style="width: 11.004%; border: 1px solid black; padding-right: 3px; text-align: right; border-right: 1px solid transparent;">
+                              <t t-esc="doc.amount_total" t-options="{'widget': 'monetary','display_currency': res_company.currency_id}"/>
+                            </td>
+                        <td
+                            style="width: 13.9312%; border: 1px solid black; padding-right: 3px; text-align: left;"></td>
+                    </tr>
+                </tbody>
+            </table>
 
 
           </div>

@@ -15,6 +15,8 @@
         <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='date_required']" position="after">
           <field name="fabric" />
           <field name="lining" />
+          <field name="colour" optional="hide" style="font-weight:Bold;text-align:center"/>
+          <field name="size" optional="hide" style="font-weight:Bold;text-align:center"/>
           <field name="department"/>
           <field name="sub_department" />
         </xpath>
@@ -91,7 +93,6 @@
               <group>
                 <field name="pattern_marker" />
                 <field name="size_approve" />
-                <field name="fabric" />
               </group>
               <group>
                 <field name="sample_size" />
