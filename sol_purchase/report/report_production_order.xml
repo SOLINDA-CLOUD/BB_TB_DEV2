@@ -169,53 +169,52 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <t t-set="no" t-value="1"/> 
+                    <t t-value="1"/>
+                    <t t-foreach="doc.order_line" t-as="order"> 
                       <tr style="height: 20px;">
-                        <t t-foreach="doc.order_line" t-as="order">
-                          <td
-                              style="width: 10.8264%; height: 20px; border: 1px solid black; padding-left: 5px;">
-                                <t t-esc="order.product_id.name"/>
-                              </td>
-                          <td
-                              style="width: 8.26295%; height: 20px; border: 1px solid black; text-align: left;">
-                                <span t-field="order.fabric_po"/>
-                              </td>
-                          <td
-                              style="width: 8.91838%; height: 20px; border: 1px solid black; padding-right: 3px; text-align: left;">
-                                <span t-field="order.lining_po"/>
-                              </td>
-                          <td
-                              style="width: 7.91842%; height: 20px; text-align: center; border: 1px solid black; padding-right: 3px;">
-                                <t t-esc="order.colour"/>
-                              </td>
-                          <td
-                              style="width: 5.4132%; text-align: center; border: 1px solid black; padding-right: 3px;">
-                                <t t-esc="order.size"/>
-                              </td>
-                          <td
-                              style="width: 8.86738%; height: 20px; border: 1px solid black; padding-right: 3px; text-align: left;">
-                                <span t-field="order.label"/>
-                              </td>
-                          <td
-                              style="width: 6.18249%; height: 20px; text-align: right; border: 1px solid black; padding-right: 3px;">
-                                <t t-esc="order.product_qty"/>
-                              </td>
-                          <td
-                              style="width: 9.86852%; border: 1px solid black; padding-right: 3px; text-align: right;">
-                                <t t-esc="order.price_unit" t-options="{'widget': 'monetary','display_currency': res_company.currency_id}"/>
-
-                              </td>
-                          <td
-                              style="width: 11.004%; border: 1px solid black; padding-right: 3px; text-align: right;">
-                                <t t-esc="order.price_subtotal" t-options="{'widget': 'monetary','display_currency': res_company.currency_id}"/>
-                              </td>
-                          <td
-                              style="width: 13.9312%; border: 1px solid black; padding-right: 3px; text-align: left;">
-                                <t t-esc="order.prod_comm"/>
-                              </td>
-                        </t>
+                        <td
+                            style="width: 10.8264%; height: 20px; border: 1px solid black; padding-left: 5px;">
+                              <t t-esc="order.product_id.name"/>
+                            </td>
+                        <td
+                            style="width: 8.26295%; height: 20px; border: 1px solid black; text-align: left;">
+                              <span t-field="order.fabric_po"/>
+                            </td>
+                        <td
+                            style="width: 8.91838%; height: 20px; border: 1px solid black; padding-right: 3px; text-align: left;">
+                              <span t-field="order.lining_po"/>
+                            </td>
+                        <td
+                            style="width: 7.91842%; height: 20px; text-align: center; border: 1px solid black; padding-right: 3px;">
+                              <t t-esc="order.colour"/>
+                            </td>
+                        <td
+                            style="width: 5.4132%; text-align: center; border: 1px solid black; padding-right: 3px;">
+                              <t t-esc="order.size"/>
+                            </td>
+                        <td
+                            style="width: 8.86738%; height: 20px; border: 1px solid black; padding-right: 3px; text-align: left;">
+                              <span t-field="order.label"/>
+                            </td>
+                        <td
+                            style="width: 6.18249%; height: 20px; text-align: right; border: 1px solid black; padding-right: 3px;">
+                              <t t-esc="order.product_qty"/>
+                            </td>
+                        <td
+                            style="width: 9.86852%; border: 1px solid black; padding-right: 3px; text-align: right;">
+                              <t t-esc="order.price_unit" t-options="{'widget': 'monetary','display_currency': res_company.currency_id}"/>
+                            </td>
+                        <td
+                            style="width: 11.004%; border: 1px solid black; padding-right: 3px; text-align: right;">
+                              <t t-esc="order.price_subtotal" t-options="{'widget': 'monetary','display_currency': res_company.currency_id}"/>
+                            </td>
+                        <td
+                            style="width: 13.9312%; border: 1px solid black; padding-right: 3px; text-align: left;">
+                              <t t-esc="order.prod_comm"/>
+                            </td>
+                        <t t-value="no + 1"/>
                       </tr>
-                      <t t-set="no" t-value="no + 1"/>
+                      
                       <tr>
                         <td
                             style="width: 10.8264%; border: 1px solid black; padding-left: 5px; border-right: 1px solid transparent;"><strong>TOTAL</strong></td>
@@ -240,7 +239,7 @@
                         <td
                             style="width: 13.9312%; border: 1px solid black; padding-right: 3px; text-align: left;"></td>
                       </tr>
-                   
+                    </t>
                 </tbody>
             </table>
 
