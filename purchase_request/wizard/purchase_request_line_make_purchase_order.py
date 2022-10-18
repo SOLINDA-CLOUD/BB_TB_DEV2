@@ -189,7 +189,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'fabric_po': item.line_id.fabric.id,
             'lining_po': item.line_id.lining.id,
             'image': item.line_id.image,
-            'color': product.product_template_variant_value_ids,
+            # 'color': product.product_template_variant_value_ids,
             # 'size': product.product_template_variant_value_ids,
             "move_dest_ids": [(4, x.id) for x in item.line_id.move_dest_ids],
         }
