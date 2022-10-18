@@ -13,7 +13,6 @@
           <field name="image" widget="image" class="oe_avatar"/>
         </xpath>
         <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='date_required']" position="after">
-          <field name="fabric" />
           <field name="lining" />
           <field name="colour" optional="hide" style="font-weight:Bold;text-align:center"/>
           <field name="size" optional="hide" style="font-weight:Bold;text-align:center"/>
