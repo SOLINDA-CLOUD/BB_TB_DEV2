@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook/page[@name='finished_products']" position="after">
-                <page name="dummy_by_roducts" string="By-Products">
+                <page name="dummy_by_roducts" string="Product Variant">
                     <field name="by_product_ids" invisible="0" attrs="{'readonly': ['|', ('state', '=', 'cancel'), '&amp;', ('state', '=', 'done'), ('is_locked', '=', True)]}">
                         <tree delete="0" create="0">
                             <field name="product_id" readonly="1"/>
@@ -19,8 +19,6 @@
                 </page>
             </xpath>
 
-
         </field>
     </record>
-
 </odoo>
