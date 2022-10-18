@@ -174,7 +174,7 @@
                       <tr style="height: 20px;">
                         <td
                             style="width: 10.8264%; height: 20px; border: 1px solid black; padding-left: 5px;">
-                              <span t-field="order.product_id.name"/>
+                              <t t-esc="order.product_id.name"/>
                             </td>
                         <td
                             style="width: 8.26295%; height: 20px; border: 1px solid black; text-align: left;">
