@@ -67,14 +67,14 @@
                   <td style="width: 20.4689%; height: 21px;">Size</td>
                   <td style="width: 1.36426%; height: 21px;">:</td>
                   <td style="width: 32.0241%; height: 21px;">
-                    <span t-field="line.product_id.product_template_variant_value_ids"/>
+                    <span t-field="line.size"/>
                   </td>
                 </tr>
                 <tr style="height: 18px;">
                   <td style="width: 18.7954%; height: 18px;">Print/Color</td>
                   <td style="width: 1.36426%; height: 18px;">:</td>
                   <td style="width: 32.9372%; height: 18px;">
-                    <span t-field="line.product_id.product_template_variant_value_ids"/>
+                    <span t-field="line.colour"/>
                   </td>
                   <td style="width: 1.36426%; height: 18px;"></td>
                   <td style="width: 20.4689%; height: 18px;">Size Approve</td>
@@ -93,7 +93,7 @@
                   <td style="width: 20.4689%; height: 18px;">Fabric</td>
                   <td style="width: 1.36426%; height: 18px;">:</td>
                   <td style="width: 32.0241%; height: 18px;">
-                    <span t-field="doc.fabric"/>
+                    <span t-field="line.fabric"/>
                   </td>
                 </tr> 
                 <tr style="height: 18px;">
