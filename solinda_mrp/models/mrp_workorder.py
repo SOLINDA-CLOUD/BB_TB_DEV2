@@ -24,7 +24,8 @@ class MrpWorkorder(models.Model):
 
     def show_receive_po(self):
         self.order_id.action_view_picking()
-
+        return self.order_id.action_view_picking()
+        
     def show_po(self):
         if not self.order_id:
             raise ValidationError("PO is not defined!\nPlease create PO first")
@@ -42,18 +43,20 @@ class MrpWorkorder(models.Model):
         self = self.sudo()
         for i in self:
             raw_po_line = []
+            total_quant = len(i.purchase_id.order_line.mapped('product_qty'))
             i.button_start()
             if not i.supplier:
                 raise ValidationError("Please input the supplier first")
             po = i.env['purchase.order'].create({'partner_id': i.supplier.id,'state': 'draft','date_approve': datetime.now()})
             if po:
+                po.button_confirm()
                 i.order_id = po.id
             raw_po_line.append((0,0, {
                 'product_id': i.workcenter_id.product_service_id.id,
                 # 'fabric': i.fabric_id.product_id.name,
                 # 'lining':'',
-                'color':i.color_id.name,
-                'product_qty': i.qty_producing,
+                # 'color':'',
+                'product_qty': total_quant,
             }))           
             i.show_po()
             po.update({"order_line": raw_po_line})

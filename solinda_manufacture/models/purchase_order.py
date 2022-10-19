@@ -84,7 +84,7 @@ class PurchaseOrder(models.Model):
                 company = self.env["res.company"].search([('is_manufacturing', '=', True)],limit=1)
                 if not company:
                     raise ValidationError("Company for manufacture is not defined")
-                header_product = i.order_line.filtered(lambda x: x.product_id.detailed_type in ['consu','product'])[0]
+                header_product = i.order_line.filtered(lambda x: x.product_id.detailed_type in ['consu','product'])
                 prodpo_line = i.order_line.filtered(lambda x: x.product_id.detailed_type in ['consu','product'])
                 prod_template = i.order_line.mapped('product_id.product_tmpl_id.id')
                 # if len(prod_template) > 1:
@@ -95,11 +95,15 @@ class PurchaseOrder(models.Model):
                     by_prod_temp.append((0,0, {
                             'product_id': o.product_id.id,
                             'product_uom_qty': o.product_qty,
+                            'product_uom_id': o.product_uom.id,
+                            'fabric_po_id': o.fabric_po.id,
+                            'lining_po_id': o.lining_po.id,
+                            'colour': o.colour,
+                            'size': o.size,
                     })) 
 
                 for l in header_product:
                     if l.product_id:
-                                  
                         location = i.get_location(l.product_id)
                         if l.product_id.bom_count > 0:
                             # BoM = self.env["mrp.bom"].search([('product_id', '=', l.product_id.id)],order = 'retail_price desc',limit=1).id
