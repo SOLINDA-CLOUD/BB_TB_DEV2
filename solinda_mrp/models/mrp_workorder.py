@@ -49,7 +49,6 @@ class MrpWorkorder(models.Model):
                 raise ValidationError("Please input the supplier first")
             po = i.env['purchase.order'].create({'partner_id': i.supplier.id,'state': 'draft','date_approve': datetime.now()})
             if po:
-                po.button_confirm()
                 i.order_id = po.id
             raw_po_line.append((0,0, {
                 'product_id': i.workcenter_id.product_service_id.id,
@@ -58,8 +57,9 @@ class MrpWorkorder(models.Model):
                 # 'color':'',
                 'product_qty': total_quant,
             }))           
-            i.show_po()
             po.update({"order_line": raw_po_line})
+            po.button_confirm()
+            i.show_po()
             
 
     def create_po_action(self):
