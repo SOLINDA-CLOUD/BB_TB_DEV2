@@ -107,7 +107,7 @@ class PurchaseOrder(models.Model):
                         location = i.get_location(l.product_id)
                         if l.product_id.bom_count > 0:
                             # BoM = self.env["mrp.bom"].search([('product_id', '=', l.product_id.id)],order = 'retail_price desc',limit=1).id
-                            BoM = self.env["mrp.bom"].search([('is_final', '=', True)])
+                            BoM = self.env["mrp.bom"].search([('product_tmpl_id', '=', l.product_id.product_tmpl_id.id),('is_final', '=', True)])
                             if not BoM:
                                 raise ValidationError("BoM final is not defined.\nPlease choose the final BoM first!")
                         mp = self.env["mrp.production"].create({
