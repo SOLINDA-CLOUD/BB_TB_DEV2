@@ -138,10 +138,12 @@
               </tr>
             </tbody>
           </table>
-         <table style="border-collapse: collapse; width: 100%; height: 36px;" border="0">
+          <table style="border-collapse: collapse; width: 100%; height: 36px;" border="0">
           <tbody>
               <tr style="height: 36px;">
-                  <td style="width: 50.5457%; height: 36px;"></td>
+                  <td style="width: 50.5457%; height: 36px;">
+                    <t t-esc='doc.alt_cmnt'/>
+                  </td>
                   <td style="width: 49.4543%; height: 36px;"><br/><img style="max-height: 420px; max-width: 425px;"/></td>
               </tr>
               <tr>
