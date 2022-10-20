@@ -9,9 +9,23 @@
         <field name="origin" position="after">
           <field name="origin_pr" />
         </field>
+        <xpath expr="origin_pr" position="attributes">
+          <attribute name="invisible">[('mandatory_source', '=', True)]</attribute>
+        </xpath>
         <xpath expr="//field[@name='origin']" position="attributes">
           <attribute name="invisible">1</attribute>
         </xpath>
+      </field>
+    </record>
+
+    <record id="inherit_stock_picking_type" model="ir.ui.view">
+      <field name="name">stock.picking.type.view.form.inherit</field>
+      <field name="model">stock.picking.type</field>
+      <field name="inherit_id" ref="stock.view_picking_type_form"/>
+      <field name="arch" type="xml">
+        <field name="show_operations" position="after">
+          <field name="mandatory_source" />
+        </field>
       </field>
     </record>   
 
