@@ -32,6 +32,9 @@
             <xpath expr="//notebook/page/field/tree/field[@name='attachments_count']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
+            <xpath expr="//notebook/page[@name='components']" position="attributes">
+                <attribute name="string">Material</attribute>
+            </xpath>
         </field>
     </record>
 
