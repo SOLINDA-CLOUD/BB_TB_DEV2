@@ -84,7 +84,7 @@ class PurchaseOrder(models.Model):
                 company = self.env["res.company"].search([('is_manufacturing', '=', True)],limit=1)
                 if not company:
                     raise ValidationError("Company for manufacture is not defined")
-                header_product = i.order_line.filtered(lambda x: x.product_id.detailed_type in ['consu','product'])
+                header_product = i.order_line.filtered(lambda x: x.product_id.detailed_type in ['consu','product'])[0]
                 prodpo_line = i.order_line.filtered(lambda x: x.product_id.detailed_type in ['consu','product'])
                 prod_template = i.order_line.mapped('product_id.product_tmpl_id.id')
                 # if len(prod_template) > 1:
@@ -108,8 +108,14 @@ class PurchaseOrder(models.Model):
                         if l.product_id.bom_count > 0:
                             # BoM = self.env["mrp.bom"].search([('product_id', '=', l.product_id.id)],order = 'retail_price desc',limit=1).id
                             BoM = self.env["mrp.bom"].search([('product_tmpl_id', '=', l.product_id.product_tmpl_id.id),('is_final', '=', True)])
+                            
                             if not BoM:
                                 raise ValidationError("BoM final is not defined.\nPlease choose the final BoM first!")
+                            if len(BoM) > 1:
+                                raise ValidationError("BoM final more than 1!")
+
+                        else:
+                            raise ValidationError("There is no Bom with product %s!") % (l.product_id.name)
                         mp = self.env["mrp.production"].create({
                             'name': _('New'),
                             'product_id': l.product_id.id,
@@ -126,6 +132,7 @@ class PurchaseOrder(models.Model):
                             'production_location_id':location.id
                             })
                         if mp:
+                            # mp.move_raw_ids = [(2, move.id) for move in mp.move_raw_ids.filtered(lambda m: m.bom_line_id)]
                             mrp.append(mp.id)
                             for j in i.order_line:
                                 if j.product_id:
@@ -137,10 +144,21 @@ class PurchaseOrder(models.Model):
                                         'product_uom_qty': j.product_qty,
                                         'product_uom': j.product_id.uom_id.id,
                                     }))
-                # 'move_finished_ids':mo_line,
-                mp._onchange_workorder_ids()
-                mp._onchange_bom_id()
-                mp.update({'move_byproduct_ids':mo_line,'by_product_ids':by_prod_temp})
+                            mp.bom_id = BoM.id
+                            list_move_raw = [(4, move.id) for move in mp.move_raw_ids.filtered(lambda m: not m.bom_line_id)]
+                            moves_raw_values = mp._get_moves_raw_values()
+                            move_raw_dict = {move.bom_line_id.id: move for move in mp.move_raw_ids.filtered(lambda m: m.bom_line_id)}
+
+                            for move_raw_values in moves_raw_values:
+                                if move_raw_values['bom_line_id'] in move_raw_dict:
+                                    # update existing entries
+                                    list_move_raw += [(1, move_raw_dict[move_raw_values['bom_line_id']].id, move_raw_values)]
+                                else:
+                                    # add new entries
+                                    list_move_raw += [(0, 0, move_raw_values)]
+                            mp.move_raw_ids = list_move_raw
+                            mp._onchange_workorder_ids()
+                            mp.update({'move_byproduct_ids':mo_line,'by_product_ids':by_prod_temp})
                             
                 i.write({'mrp_ids' : [(6,0,mrp)],'mrp_id':mp.id})
                 return i.show_mrp_prod()
