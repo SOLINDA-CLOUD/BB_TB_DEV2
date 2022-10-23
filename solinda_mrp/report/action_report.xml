@@ -19,7 +19,7 @@
         </record>
 
         <record id="report_costing_product_action" model="ir.actions.report">
-            <field name="name">Costing Product</field>
+            <field name="name">Costing Product/Harga</field>
             <field name="model">mrp.bom</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">solinda_mrp.report_costing_product</field>
