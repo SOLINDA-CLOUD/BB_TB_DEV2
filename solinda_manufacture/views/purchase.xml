@@ -24,8 +24,6 @@
 
         <xpath expr="//field[@name='currency_id']" position="after">
           <field name="breakdown_id" invisible="1"/>
-          <field name="mrp_ids" invisible="0"/>
-
         </xpath>
 
 
