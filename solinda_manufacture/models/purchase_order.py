@@ -100,7 +100,7 @@ class PurchaseOrder(models.Model):
                     
                     header_product = i.order_line.filtered(lambda x: x.product_id.detailed_type in ['consu','product'] and x.product_id.product_tmpl_id.id == pt.id)[0]
                     prodpo_line = i.order_line.filtered(lambda x: x.product_id.detailed_type in ['consu','product']  and x.product_id.product_tmpl_id.id == pt.id)
-                    
+                    by_prod_temp = []
                     for o in prodpo_line:
                         by_prod_temp.append((0,0, {
                                 'product_id': o.product_id.id,
