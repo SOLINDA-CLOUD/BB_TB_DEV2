@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 from dateutil.relativedelta import relativedelta
+from odoo.tools.misc import formatLang, get_lang, format_amount
 
 class MrpWorkorder(models.Model):
     _inherit = 'mrp.workorder'
@@ -49,17 +50,27 @@ class MrpWorkorder(models.Model):
                 raise ValidationError("Please input the supplier first")
             po = i.env['purchase.order'].create({'partner_id': i.supplier.id,'state': 'draft','date_approve': datetime.now()})
             if po:
-                po.button_confirm()
                 i.order_id = po.id
+            if not i.workcenter_id.product_service_id:
+                raise ValidationError("Default product in Workcenter is not defined!\nPlease input product in workcenter as default when create PO from Work Order")
             raw_po_line.append((0,0, {
                 'product_id': i.workcenter_id.product_service_id.id,
+                'name': i.workcenter_id.product_service_id.name,
                 # 'fabric': i.fabric_id.product_id.name,
                 # 'lining':'',
                 # 'color':'',
                 'product_qty': total_quant,
             }))           
-            i.show_po()
             po.update({"order_line": raw_po_line})
+            for pol in po.order_line:
+                product_lang = pol.product_id.with_context(
+                    lang=get_lang(pol.env, pol.partner_id.lang).code,
+                    partner_id=pol.partner_id.id,
+                    company_id=pol.company_id.id,
+                )
+                pol.name = pol._get_product_purchase_description(product_lang)
+            po.button_confirm()
+            i.show_po()
             
 
     def create_po_action(self):

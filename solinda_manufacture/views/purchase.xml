@@ -18,7 +18,8 @@
         </xpath>
 
         <xpath expr="//header" position="inside">
-          <button string="Create Production Detail" name="create_mo_production" attrs="{'invisible':['|',('mrp_count', '!=', 0),('state', '!=', 'draft')]}" groups="solinda_manufacture.group_potomo_access" type="object" class="oe_highlight"/>
+          <button string="Create Production Detail" name="create_mo_production" groups="solinda_manufacture.group_potomo_access" type="object" class="oe_highlight"/>
+          <!-- <button string="Create Production Detail" name="create_mo_production" attrs="{'invisible':['|',('mrp_count', '!=', 0),('state', '!=', 'draft')]}" groups="solinda_manufacture.group_potomo_access" type="object" class="oe_highlight"/> -->
         </xpath>
 
         <xpath expr="//field[@name='currency_id']" position="after">
