@@ -33,7 +33,7 @@
                 <span style="text-decoration: underline;">SALES ORDER</span>
             </h1>
             <table style="border-collapse: collapse; width: 100%; height: 50px;" border="0">
-                <tbody style="font-size: 12px;">
+                <tbody style="font-size: 15px;">
                     <tr style="height: 18px;">
                         <td style="width: 18.7991%; height: 22px;">Invoice No</td>
                         <td style="width: 2.15983%; height: 22px;">:</td>
@@ -82,7 +82,7 @@
             <br/><br/><br/>
             
             <table style="border-collapse: collapse; width: 100%;" border="1">
-                <thead style="font-size: 12px;">
+                <thead style="font-size: 15px;">
                     <tr>
                         <td style="width: 10.1143%; border: 1px solid black; text-align: left;">Code</td>
                         <td style="width: 28.0996%; border: 1px solid black; text-align: left;">Description</td>
@@ -93,7 +93,7 @@
                         <td style="width: 18.9343%; border: 1px solid black; text-align: right;">Sub Total</td>
                     </tr>
                 </thead>
-                <tbody style="font-size: 12px;">
+                <tbody style="font-size: 15px;">
                   <t t-set="no" t-value="1"/>
                     <t t-foreach="doc.order_line" t-as="order">
                       <tr>
@@ -137,7 +137,7 @@
             <table
                 style="border-collapse: collapse; width: 76.2906%; height: 36px;"
                 border="0">
-                <tbody style="font-size: 12px;">
+                <tbody style="font-size: 15px;">
                     <tr style="height: 18px;">
                         <td style="width: 10.7863%; height: 18px; border-right: 1px solid transparent;">Note</td>
                         <td style="width: 3.40136%; height: 18px; border-right: 1px solid transparent;">:</td>
@@ -155,7 +155,7 @@
             <table
                 style="border-collapse: collapse; width: 93.1724%; height: 126px;"
                 border="0">
-                <tbody style="font-size: 12px;">
+                <tbody style="font-size: 15px;">
                     <tr style="height: 18px;">
                         <td style="width: 23.4965%; height: 18px; text-align: center;">Prepared By,</td>
                         <td style="width: 25.5944%; height: 18px; text-align: center;">Ordered By,</td>
