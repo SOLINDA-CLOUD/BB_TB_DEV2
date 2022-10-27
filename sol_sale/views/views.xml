@@ -6,7 +6,7 @@
     <field name="model">sale.order</field>
     <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
-      <xpath expr="partner_id" position="after">
+      <xpath expr="//group[@name='sale_header']/group[2]" position="after">
         <field name="po_number" />
         <field name="so_number" />
       </xpath>
