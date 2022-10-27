@@ -100,7 +100,7 @@ class PurchaseOrder(models.Model):
 					'price_unit' : data.price_unit,
 					'price_subtotal' : data.price_subtotal,
 			}])
-        so.create({
+        so_id = so.create({
             'partner_id': self.partner_id.id,
             'company_id': company.id,
             'order_line': update,
@@ -155,7 +155,7 @@ class PurchaseOrder(models.Model):
                                 'user_id': i.env.user.id,
                                 'company_id': company.id,
                                 'purchase_id':i.id,
-                                'sales_order_id':so.id,
+                                'sales_order_id':so_id.id,
                                 'picking_type_id':BoM.picking_type_id.id,
                                 'location_src_id':BoM.picking_type_id.default_location_src_id.id,
                                 'location_dest_id':BoM.picking_type_id.default_location_dest_id.id,
