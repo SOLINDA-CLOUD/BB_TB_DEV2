@@ -6,13 +6,23 @@
     <field name="model">sale.order</field>
     <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
+      <xpath expr="partner_id" position="after">
+        <field name="po_number" />
+        <field name="so_number" />
+      </xpath>
       <xpath expr="//notebook/page[@name='order_lines']/field/tree/field[@name='name']" position="after">
         <field name="colour" />
         <field name="size" />
+      </xpath>
+      <xpath expr="//notebook/page[@name='other_information']/group" position="inside">
+        <group name="add_info_report" string="Addition in Report">
+          <field name="prepared" />
+          <field name="ordered" />
+          <field name="approved" />
+        </group>
       </xpath>    
     </field>
   </record>
-
 
 
   </data>

@@ -4,6 +4,12 @@ from odoo import models, fields, api
 class SalesOrder(models.Model):
   _inherit = 'sale.order'
 
+  po_number = fields.Char('PO No')
+  so_number = fields.Char('SO No')
+  prepared = fields.Char(string='Prepared By')
+  ordered = fields.Many2one('res.users', string='Ordered By')
+  approved = fields.Many2one('res.users', string='Approved By')
+
   @api.model
   def create(self, vals):
     res = super(SalesOrder, self).create(vals)

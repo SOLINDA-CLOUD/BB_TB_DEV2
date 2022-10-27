@@ -84,13 +84,13 @@
             <table style="border-collapse: collapse; width: 100%;" border="1">
                 <thead style="font-size: 15px;">
                     <tr>
-                        <td style="width: 10.1143%; border: 1px solid black; text-align: left;">Code</td>
-                        <td style="width: 28.0996%; border: 1px solid black; text-align: left;">Description</td>
-                        <td style="width: 9.67166%; border: 1px solid black; text-align: left;">Color</td>
-                        <td style="width: 7.32326%; border: 1px solid black; text-align: left;">Size</td>
-                        <td style="width: 5.398%; border: 1px solid black; text-align: right;">Qty</td>
-                        <td style="width: 17.2559%; border: 1px solid black; text-align: right;">Cost Price</td>
-                        <td style="width: 18.9343%; border: 1px solid black; text-align: right;">Sub Total</td>
+                        <td style="width: 10.1143%; border: 1px solid black; text-align: left;"><strong>Code</strong></td>
+                        <td style="width: 28.0996%; border: 1px solid black; text-align: left;"><strong>Description</strong></td>
+                        <td style="width: 9.67166%; border: 1px solid black; text-align: left;"><strong>Color</strong></td>
+                        <td style="width: 7.32326%; border: 1px solid black; text-align: left;"><strong>Size</strong></td>
+                        <td style="width: 5.398%; border: 1px solid black; text-align: right;"><strong>Qty</strong></td>
+                        <td style="width: 17.2559%; border: 1px solid black; text-align: right;"><strong>Cost Price</strong></td>
+                        <td style="width: 18.9343%; border: 1px solid black; text-align: right;"><strong>Sub Total</strong></td>
                     </tr>
                 </thead>
                 <tbody style="font-size: 15px;">
@@ -139,7 +139,7 @@
                 border="0">
                 <tbody style="font-size: 15px;">
                     <tr style="height: 18px;">
-                        <td style="width: 10.7863%; height: 18px; border-right: 1px solid transparent;">Note</td>
+                        <td style="width: 10.7863%; height: 18px; border-right: 1px solid transparent;"><strong>Note</strong></td>
                         <td style="width: 3.40136%; height: 18px; border-right: 1px solid transparent;">:</td>
                         <td style="width: 71.4859%; height: 18px;">
                           <t t-esc="doc.note"/>
