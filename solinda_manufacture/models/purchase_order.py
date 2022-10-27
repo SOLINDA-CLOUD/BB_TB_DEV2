@@ -90,13 +90,13 @@ class PurchaseOrder(models.Model):
         if not company:
             raise ValidationError("Company for manufacture is not defined")
         self = self.sudo()
-        so = self.env['sale.order'].create({
-            'name': _('New'),
-            'partner_id': self.company_id.id,
+        so = self.env['sale.order.line'].create({
+            # 'partner_id': self.company_id.id,
             'product_id' : self.product_id.id,
+            'name' : self.name,
             'product_uom_qty' : self.product_qty,
             'price_unit' : self.price_unit,
-            'state': 'draft',
+            # 'state': 'draft',
         })
         for i in self:
             if i.mrp_count > 0:
