@@ -98,7 +98,7 @@ class PurchaseOrder(models.Model):
 					'name' : data.name,
 					'product_uom_qty' : data.product_qty,
 					'price_unit' : data.price_unit,
-					'product_subtotal' : data.price_subtotal,
+					'price_subtotal' : data.price_subtotal,
 			}])
         so.create({
             'partner_id': self.partner_id.id,
