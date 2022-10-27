@@ -84,20 +84,24 @@ class PurchaseOrder(models.Model):
 
 
     def create_mo_production(self):
-        mrp,mo_line,by_prod_temp = [],[],[]
+        mrp,mo_line,by_prod_temp,update = [],[],[],[]
         BoM,location = False,False
         company = self.env["res.company"].search([('is_manufacturing', '=', True)],limit=1)
         if not company:
             raise ValidationError("Company for manufacture is not defined")
         self = self.sudo()
-        so = self.env['sale.order.line'].create({
-            # 'partner_id': self.company_id.id,
-            'product_id' : self.product_id.id,
-            'name' : self.name,
-            'product_uom_qty' : self.product_qty,
-            'price_unit' : self.price_unit,
-            # 'state': 'draft',
-        })
+
+        so = self.env['purchase.order'].browse(self._context.get('active_ids',[]))
+        for record in record.order_line:
+            update.append((0,0,{
+					'product_id' : record.product_id.id,
+					'name' : record.name,
+					'product_qty' : record.product_qty,
+					'price_unit' : record.price_unit,
+					'product_subtotal' : record.price_subtotal,
+					# 'date_planned' : datetime.today(),
+				}))
+
         for i in self:
             if i.mrp_count > 0:
                 return i.show_mrp_prod()
