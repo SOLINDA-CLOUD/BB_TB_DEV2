@@ -86,6 +86,7 @@ class PurchaseOrder(models.Model):
     def create_mo_production(self):
         mrp,mo_line,by_prod_temp,update = [],[],[],[]
         BoM,location = False,False
+        other_company = self.env["res.company"].search([('is_manufacturing', '=', False)],limit=1)
         company = self.env["res.company"].search([('is_manufacturing', '=', True)],limit=1)
         if not company:
             raise ValidationError("Company for manufacture is not defined")
@@ -101,7 +102,7 @@ class PurchaseOrder(models.Model):
 					'price_subtotal' : data.price_subtotal,
 			}])
         so_id = so.create({
-            'partner_id': self.company_id.id,
+            'partner_id': other_company.id,
             'company_id': company.id,
             'order_line': update,
         })
