@@ -91,15 +91,19 @@ class PurchaseOrder(models.Model):
             raise ValidationError("Company for manufacture is not defined")
         self = self.sudo()
 
-        so = self.env['purchase.order'].browse(self._context.get('active_ids',[]))
-        for so in so.order_line:
-            update.append((0,0,{
-					'product_id' : so.product_id.id,
-					'name' : so.name,
-					'product_qty' : so.product_qty,
-					'price_unit' : so.price_unit,
-					'product_subtotal' : so.price_subtotal,
-				}))
+        so = self.env['sale.order'].browse(self._context.get('id',[]))
+        for data in so.order_line:
+            update.append([0,0,{
+					'product_id' : data.product_id.id,
+					'name' : data.name,
+					'product_uom_qty' : data.product_qty,
+					'price_unit' : data.price_unit,
+					'product_subtotal' : data.price_subtotal,
+				}])
+        so.create({
+            'partner_id': self.partner_id.id,
+            'order_line': update,
+        })
 
         for i in self:
             if i.mrp_count > 0:
