@@ -92,14 +92,14 @@ class PurchaseOrder(models.Model):
         self = self.sudo()
 
         so = self.env['sale.order'].browse(self._context.get('id',[]))
-        for data in so.order_line:
+        for data in self.order_line:
             update.append([0,0,{
 					'product_id' : data.product_id.id,
 					'name' : data.name,
 					'product_uom_qty' : data.product_qty,
 					'price_unit' : data.price_unit,
 					'product_subtotal' : data.price_subtotal,
-				}])
+			}])
         so.create({
             'partner_id': self.partner_id.id,
             'order_line': update,
