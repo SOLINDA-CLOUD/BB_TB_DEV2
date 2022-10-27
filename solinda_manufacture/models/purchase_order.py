@@ -101,7 +101,7 @@ class PurchaseOrder(models.Model):
 					'price_subtotal' : data.price_subtotal,
 			}])
         so_id = so.create({
-            'partner_id': self.partner_id.id,
+            'partner_id': self.company_id.id,
             'company_id': company.id,
             'order_line': update,
         })
