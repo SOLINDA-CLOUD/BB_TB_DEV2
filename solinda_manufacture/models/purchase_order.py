@@ -93,7 +93,9 @@ class PurchaseOrder(models.Model):
         so = self.env['sale.order'].create({
             'name': _('New'),
             'partner_id': self.company_id.id,
-            'order_line': self.order_line,
+            'product_id' : self.product_id.id,
+            'product_uom_qty' : self.product_qty,
+            'price_unit' : self.price_unit,
             'state': 'draft',
         })
         for i in self:
