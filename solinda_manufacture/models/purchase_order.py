@@ -92,14 +92,13 @@ class PurchaseOrder(models.Model):
         self = self.sudo()
 
         so = self.env['purchase.order'].browse(self._context.get('active_ids',[]))
-        for record in record.order_line:
+        for so in so.order_line:
             update.append((0,0,{
-					'product_id' : record.product_id.id,
-					'name' : record.name,
-					'product_qty' : record.product_qty,
-					'price_unit' : record.price_unit,
-					'product_subtotal' : record.price_subtotal,
-					# 'date_planned' : datetime.today(),
+					'product_id' : so.product_id.id,
+					'name' : so.name,
+					'product_qty' : so.product_qty,
+					'price_unit' : so.price_unit,
+					'product_subtotal' : so.price_subtotal,
 				}))
 
         for i in self:
