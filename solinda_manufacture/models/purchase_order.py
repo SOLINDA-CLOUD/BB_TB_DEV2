@@ -104,7 +104,7 @@ class PurchaseOrder(models.Model):
             'partner_id': self.partner_id.id,
             'company_id': company.id,
             'order_line': update,
-            'po_test': self.name,
+            'po_test': self.id,
         })
 
         for i in self:
