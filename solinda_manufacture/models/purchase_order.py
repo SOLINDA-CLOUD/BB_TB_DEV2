@@ -104,7 +104,7 @@ class PurchaseOrder(models.Model):
             'partner_id': self.partner_id.id,
             'company_id': company.id,
             'order_line': update,
-            
+            'name': _('New'),
         })
 
         for i in self:
@@ -162,6 +162,7 @@ class PurchaseOrder(models.Model):
                                 'location_dest_id':BoM.picking_type_id.default_location_dest_id.id,
                                 'production_location_id':location.id
                                 })
+                            mp.update({'sales_order_id':so.name.id,})    
                             if mp:
                                 # mp.move_raw_ids = [(2, move.id) for move in mp.move_raw_ids.filtered(lambda m: m.bom_line_id)]
                                 mrp.append(mp.id)
@@ -179,7 +180,6 @@ class PurchaseOrder(models.Model):
                                 list_move_raw = [(4, move.id) for move in mp.move_raw_ids.filtered(lambda m: not m.bom_line_id)]
                                 moves_raw_values = mp._get_moves_raw_values()
                                 move_raw_dict = {move.bom_line_id.id: move for move in mp.move_raw_ids.filtered(lambda m: m.bom_line_id)}
-                                mp.sales_order_id = so.id
 
                                 for move_raw_values in moves_raw_values:
                                     if move_raw_values['bom_line_id'] in move_raw_dict:
