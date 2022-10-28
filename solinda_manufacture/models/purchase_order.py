@@ -106,9 +106,6 @@ class PurchaseOrder(models.Model):
             'order_line': update,
             # 'po_test': self.id,
         })
-        self.env['mrp.production'].create({
-            'sales_order_id': self.id,
-        })
 
         for i in self:
             if i.mrp_count > 0:
@@ -159,6 +156,7 @@ class PurchaseOrder(models.Model):
                                 'user_id': i.env.user.id,
                                 'company_id': company.id,
                                 'purchase_id':i.id,
+                                'sales_order_id': so.id,
                                 'picking_type_id':BoM.picking_type_id.id,
                                 'location_src_id':BoM.picking_type_id.default_location_src_id.id,
                                 'location_dest_id':BoM.picking_type_id.default_location_dest_id.id,
