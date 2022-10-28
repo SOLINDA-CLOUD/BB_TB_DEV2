@@ -5,6 +5,7 @@ class SalesOrder(models.Model):
   _inherit = 'sale.order'
 
   po_number = fields.Char('PO No')
+  po_test = fields.Many2one('purchase.order', string='PO No')
   so_number = fields.Char('SO No')
   prepared = fields.Char(string='Prepared By')
   ordered = fields.Many2one('res.users', string='Ordered By')

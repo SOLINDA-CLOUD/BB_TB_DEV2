@@ -9,6 +9,7 @@
       <xpath expr="//group[@name='sale_header']/group[@name='order_details']/field[@name='payment_term_id']" position="after">
         <field name="po_number" />
         <field name="so_number" />
+        <field name="po_test" />
       </xpath>
       <xpath expr="//notebook/page[@name='order_lines']/field/tree/field[@name='name']" position="after">
         <field name="colour" />
