@@ -100,10 +100,11 @@ class PurchaseOrder(models.Model):
 					'price_unit' : data.price_unit,
 					'price_subtotal' : data.price_subtotal,
 			}])
-        so_id = so.create({
+        so.create({
             'partner_id': self.partner_id.id,
             'company_id': company.id,
             'order_line': update,
+            
         })
 
         for i in self:
@@ -155,7 +156,7 @@ class PurchaseOrder(models.Model):
                                 'user_id': i.env.user.id,
                                 'company_id': company.id,
                                 'purchase_id':i.id,
-                                'sales_order_id':so_id.id,
+                                'sales_order_id':so.id,
                                 'picking_type_id':BoM.picking_type_id.id,
                                 'location_src_id':BoM.picking_type_id.default_location_src_id.id,
                                 'location_dest_id':BoM.picking_type_id.default_location_dest_id.id,
@@ -178,6 +179,7 @@ class PurchaseOrder(models.Model):
                                 list_move_raw = [(4, move.id) for move in mp.move_raw_ids.filtered(lambda m: not m.bom_line_id)]
                                 moves_raw_values = mp._get_moves_raw_values()
                                 move_raw_dict = {move.bom_line_id.id: move for move in mp.move_raw_ids.filtered(lambda m: m.bom_line_id)}
+                                mp.sales_order_id = so.id
 
                                 for move_raw_values in moves_raw_values:
                                     if move_raw_values['bom_line_id'] in move_raw_dict:
@@ -217,7 +219,7 @@ class PurchaseOrder(models.Model):
                             'user_id': i.env.user.id,
                             'company_id': company.id,
                             'purchase_id':i.id,
-                            'sale_order_id':so_id.id
+                        
                             })
                         if mp:
                             mrp.append(mp.id)
