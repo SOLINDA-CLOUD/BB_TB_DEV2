@@ -12,7 +12,7 @@ class MrpProduction(models.Model):
 
     customer = fields.Many2one(related='bom_id.customer', string='Customer', store=True)
     retail_price = fields.Float(related='bom_id.retail_price', string='Retail Price', store=True)
-    sales_order_id = fields.Many2one(comodel_name='sale.order', string='SO No.')
+    sales_order_id = fields.Char(string='SO No.')
     po_no = fields.Char(string='PO No.')
     purchase_id = fields.Many2one('purchase.order', string='Purchase')
     product_tmpl_id = fields.Many2one('product.template', string='Product',related="product_id.product_tmpl_id")
